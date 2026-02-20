@@ -1,6 +1,6 @@
 using DG.Tweening;
+using Level.Controllers;
 using UnityEngine;
-using VContainer;
 
 namespace Ball.Controller
 {
@@ -23,18 +23,21 @@ namespace Ball.Controller
         
         private void Start()
         {
+            _particleSystem.transform.SetParent(PlatformActivatorList.Instance.transform);
+            _particleSystem.transform.localScale = Vector3.one;
             transform.SetParent(null);
             _effectMat.color = new Color(0,0,0,0);
         }
 
         public void GroundedEffect(Transform hit)
         {
-            transform.SetParent(hit.transform);
+            transform.SetParent(hit.transform.parent);
 
             transform.position = new Vector3(
                 _ball.position.x,
                 hit.position.y + 0.12f,
                 _ball.position.z);
+            _particleSystem.transform.position = transform.position + Vector3.down * 0.2f;
             
             transform.rotation = Quaternion.Euler(new Vector3
                 (90,Random.Range(-180f, 180f),0));
@@ -42,6 +45,7 @@ namespace Ball.Controller
             _sequence.Kill(true);
             
             _effectMat.color = _color;
+            _particleSystem.Clear();
             _particleSystem.Play();
             
             _sequence = DOTween.Sequence();

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8323536186598422720}
+  - component: {fileID: 3292727314366073647}
   m_Layer: 7
   m_Name: Finish
   m_TagString: Untagged
@@ -32,6 +33,18 @@ Transform:
   - {fileID: 4484326782028608379}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3292727314366073647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4686370622950551859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd563045b6fb8df438c6e1df438f4499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ball.Controller.FinishPlatform
 --- !u!1001 &4157172162989954192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -115,9 +128,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 49576778f97d9774e9585a5d2b7e3d1f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6997173815283171588}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 49576778f97d9774e9585a5d2b7e3d1f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2164662136528966480}
   m_SourcePrefab: {fileID: 100100000, guid: 49576778f97d9774e9585a5d2b7e3d1f, type: 3}
 --- !u!1 &3850674299260479937 stripped
 GameObject:
@@ -139,25 +149,13 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: 49576778f97d9774e9585a5d2b7e3d1f, type: 3}
---- !u!114 &2164662136528966480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3850674299260479937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd563045b6fb8df438c6e1df438f4499, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Ball.Controller.FinishPlatform
 --- !u!4 &4484326782028608379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 49576778f97d9774e9585a5d2b7e3d1f, type: 3}

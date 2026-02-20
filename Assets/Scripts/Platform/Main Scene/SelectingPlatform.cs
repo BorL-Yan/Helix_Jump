@@ -1,4 +1,6 @@
+using System;
 using com.cyborgAssets.inspectorButtonPro;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Platform.Main_Scene
@@ -7,20 +9,88 @@ namespace Platform.Main_Scene
     {
         [SerializeField] private MainPlatform _mainPlatform;
         
-        public int platformID;
-
-        void Start()
+        private void OnEnable()
         {
-            Debug.Log($"Save Active Level : {GameSave.GetSettings().Level}, Platfor ID : {platformID}");
-            if (GameSave.GetSettings().Level >= platformID)
+            GameManager.Instance.Action.SelectPlatform += GameLifeTime;
+            GameManager.Instance.Action.ActivateGameSelectPlatform += ActivateGame;
+        }
+
+        private void Start()
+        {
+            int level = GameSave.GetSettings().Level; 
+            if (level > _mainPlatform.platformID)
             {
-                _mainPlatform.Activate();
+                Activate();
+            }
+            else if (level < _mainPlatform.platformID)
+            {
+                Deactivate();
+            }
+        }
+        
+        private void SelectPlatform(int id, Action<SelectingPlatform> callback)
+        {
+            if (_mainPlatform.platformID == id)
+            {
+                _mainPlatform.Select();
+                callback?.Invoke(this);
+            }else if (id > _mainPlatform.platformID)
+            {
+                Activate();
+            }
+            else if (id < _mainPlatform.platformID)
+            {
+                Deactivate();
+            }
+        }
+        
+        private void GameLifeTime(int id)
+        {
+            if (GameManager.Instance.OpenNewLevel && _mainPlatform.platformID == id)
+            {
+                Sequence sequence = DOTween.Sequence();
+                sequence.AppendInterval(2f) // Animation interval
+                    .AppendCallback(() =>
+                    {
+                        _mainPlatform.Select();
+                        GameManager.Instance.Action.SelectingPlatform?.Invoke(this);
+                        GameManager.Instance.OpenNewLevel = false;
+                    });
             }
             else
             {
-                _mainPlatform.Deactivate();
+                SelectPlatform(id, GameManager.Instance.Action.SelectingPlatform);
             }
+
+
         }
+
+        private void ActivateGame(int id)
+        {
+            SelectPlatform(id, GameManager.Instance.Action.ActivateGameSelectingPlatform);
+            
+        }
+        
+
+        public void Select()
+        {
+            _mainPlatform.Select();
+        }
+        public void Activate()
+        {
+            _mainPlatform.Activate();
+        }
+
+        public void Deactivate()
+        {
+            _mainPlatform.Deactivate();
+        }
+
+        public void PlatformJumping()
+        {
+            _mainPlatform.JumpEffect();
+        }
+        
         
         private void OnValidate()
         {
@@ -34,6 +104,15 @@ namespace Platform.Main_Scene
         private void Reset()
         {
             _mainPlatform = GetComponentInParent<MainPlatform>();
+        }
+
+        private void OnDestroy()
+        {
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.Action.SelectPlatform -= GameLifeTime;
+                GameManager.Instance.Action.ActivateGameSelectPlatform -= ActivateGame;
+            }
         }
     }
 }

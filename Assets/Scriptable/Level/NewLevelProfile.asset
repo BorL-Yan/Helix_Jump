@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676b48eb626d55741878f5785b2e0deb, type: 3}
   m_Name: NewLevelProfile
   m_EditorClassIdentifier: Assembly-CSharp::LevelProfile
-  totalPlatforms: 30
+  totalPlatforms: 4
   distanceBetweenPlatforms: 1
   difficultyCurve:
     curve:

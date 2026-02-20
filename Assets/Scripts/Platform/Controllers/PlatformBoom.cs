@@ -24,23 +24,18 @@ public class PlatformBoom : MonoBehaviour
     {
         _collider.enabled = false;
         sequence = DOTween.Sequence();
-        Vector3 startLocalPos = transform.localPosition;
         Vector3 startLocalRot = transform.localEulerAngles;
         
         Vector3 direction = transform.right;
         
         sequence
-            // 1. Двигаем локально по X (относительно родителя)
-            .Append(transform.DOMove(direction * 2f, 0.5f)).SetEase(Ease.InOutCubic)
+            .Join(transform.DOMove(direction * 2f, 0.5f)).SetEase(Ease.InQuad)
             .Join(transform.DOLocalMoveY(-10, 2).SetLink(gameObject))
-            .SetEase(Ease.InOutCubic)
-            .Join(transform.DOLocalRotate(new Vector3( Random.Range(-20, 20), startLocalRot.y, 30), 0.5f)).SetEase(Ease.InOutCubic)
-            //
-            .OnComplete(() =>
+                .SetEase(Ease.InQuad)
+            .Join(transform.DOLocalRotate(new Vector3(Random.Range(-20, 20), startLocalRot.y, 30), 0.5f))
+                .SetEase(Ease.InQuad)
+            .InsertCallback(0.8f, () =>
             {
-                // Возвращаем в исходное локальное состояние
-                // transform.localPosition = startLocalPos;
-                // transform.localRotation = Quaternion.Euler(startLocalRot);
                 gameObject.SetActive(false);
             });
     }

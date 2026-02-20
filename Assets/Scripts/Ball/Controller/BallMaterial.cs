@@ -17,8 +17,7 @@ public class BallMaterial : MonoBehaviour
             _meshRenderer = GetComponentInChildren<MeshRenderer>();
         }
     }
-
-
+    
     [ProButton]
     private void Reset()
     {

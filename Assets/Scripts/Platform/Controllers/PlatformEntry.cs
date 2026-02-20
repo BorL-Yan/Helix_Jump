@@ -11,6 +11,6 @@ public class PlatformEntry : IStartable
 
     public void Start()
     {
-        _levelAction.OnStartLevel?.Invoke();
+        //_levelAction.OnStartLevel?.Invoke();
     }
 }

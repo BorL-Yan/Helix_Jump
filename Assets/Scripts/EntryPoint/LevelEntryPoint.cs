@@ -1,31 +1,40 @@
+using System;
+using Level.Manager;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
 namespace Boot
 {
-    public class LevelEntryPoint : SingletonScene<LevelEntryPoint>
+    public class LevelEntryPoint : MonoBehaviour
     {
         [Min(1), SerializeField] private int _levelEntry;
         
-        protected override void Init()
+        private LevelAction _levelAction;
+
+        [Inject]
+        public void Construct(LevelAction levelAction)
         {
-            base.Init();
+            _levelAction = levelAction;
+        }
+        
+        private void Awake()
+        {
             if (GameManager.Instance == null)
             {
                 GameManager manager = Resources.Load<GameManager>("Menegers/GameBootstrap");
-                Instantiate(manager).Initializ();
-                Intialize();
+                Instantiate(manager);
+                ActivateLevel(_levelEntry);
             }
+            else
+            {
+                ActivateLevel(GameManager.Instance.CurrentActiveLevel);
+            }
+            GameManager.Instance.ActiveLevel();
         }
         
-        public void Intialize()
+        public void ActivateLevel(int activeLevel)
         {
-            int activeLevel = _levelEntry;
-            
-            if (GameManager.Instance.CurrentActiveLevel != 0)
-            {
-                activeLevel = GameManager.Instance.CurrentActiveLevel;
-            }
-            
             GameObject level = Resources.Load<GameObject>("Levels/Level_" + activeLevel);
             if(level != null)
                 Instantiate(level);
@@ -36,8 +45,11 @@ namespace Boot
                 ball = Instantiate(ball);
                 ball.transform.position = Vector3.zero;
             }
-        }
+            
+            _levelAction.OnStartLevel?.Invoke();
 
-      
+            LevelManager.Instance.LevelProgress.Activate(activeLevel,
+                level.GetComponent<LevelPlatformManager>().PlatformsCount);
+        }
     }
 }

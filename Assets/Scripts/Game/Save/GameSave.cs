@@ -48,6 +48,11 @@ public static class GameSave
 public class GameSettings
 {
     public int Level = 1;
+    public int ActiveLevelSkin = 1;
+    public int Point = 0;
+    public int Score = 0;
+    public int Key = 0;
+    
     public bool Vibration = true;
     public bool SFX = true;
 }

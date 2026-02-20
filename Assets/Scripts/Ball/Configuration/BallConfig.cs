@@ -17,9 +17,9 @@ public class BallConfig : ScriptableObject
     [SerializeField] private List<Material> _materials;
     public Material GetMaterial()
     {
-        //TODO GameManger.CurrentActiveLevel
+        int level = GameSave.GetSettings().ActiveLevelSkin;
         
-        return _materials[0];
+        return _materials[level % _materials.Count];
     }
     
 }

@@ -550,6 +550,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3849632924628246125, guid: f459348a0a3a2ea4cbe30c1e1fe779e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5092588094485548697, guid: f459348a0a3a2ea4cbe30c1e1fe779e3, type: 3}
       propertyPath: m_Name
       value: EntryPoint

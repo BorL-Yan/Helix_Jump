@@ -1,5 +1,6 @@
 using Ball.Configuration;
 using Level.Controllers;
+using Level.Manager;
 using UnityEditor;
 using UnityEngine;
 using VContainer;
@@ -13,13 +14,12 @@ namespace Ball.Controller
 
         [SerializeField] private float _breakPlatformDistance;
         
-        
         private BallAction _ballAction;
         private BallFlags _flags;
         private BallConfig _ballConfig;
         private LevelAction _levelAction;
         private bool _activated;
-        private Material _ballmaterial;
+        private Material _ballMaterial;
         
         [Inject]
         public void Construct(BallAction ballAction, BallFlags flags, BallConfig ballConfig, LevelAction levelAction)
@@ -33,7 +33,7 @@ namespace Ball.Controller
         private void Start()
         {
             _activated = true;
-            _ballmaterial = _ballConfig.GetMaterial();
+            _ballMaterial = _ballConfig.GetMaterial();
             ComboTrail.Instance.SetMaterial(_ballConfig.GetMaterial());
         }
 
@@ -57,21 +57,34 @@ namespace Ball.Controller
                     Platform(collider.transform);
                     break;
                 }
+                case "EnemyPlatform":
+                {
+                    LoosePlatform();
+                    break;
+                }
                 case "FinishPlatform":
                 {
-                    _levelAction.OnFinishLevel?.Invoke();
-                    _ballAction?.Jump();
+                    FinishPlatform(collider.transform);
                     break;
                 }
                 case "MultiplyPlatform":
                 {
+                    MultyplyPlatform(collider.transform);
                     break;
                 }
-                case "EnemyPlatform":
+                case "MultiplyEmptyPlatform":
                 {
-                    _levelAction.OnLoos?.Invoke();
+                    _levelAction.AddMultiplyCount?.Invoke();
                     break;
                 }
+                case "MultiplyFinishPlatform":
+                {
+                    //TODO final effect
+                    
+                    MultyplyPlatform(collider.transform);
+                    break;
+                }
+                
             }
         }
 
@@ -90,11 +103,11 @@ namespace Ball.Controller
                         var platform = PlatformActivatorList.Instance.GetPlatformActivate(hit.transform.GetInstanceID());
                         if (platform != null)
                         {
-                            platform.ActivateBoom(_ballmaterial);
+                            platform.ActivateBoom(_ballMaterial);
+                            _levelAction.OnSetPoint?.Invoke(_flags.currentPlatformBreak);
                         }
                     }
                 }
-                
             }
             
             _flags.isGround = true;
@@ -111,12 +124,60 @@ namespace Ball.Controller
                 .ActivateBoom();
             
             _flags.currentPlatformBreak++;     
-            
             if(_flags.currentPlatformBreak >= _ballConfig.MaxPlatformBreak - 1)
             {
                 ComboTrail.Instance.Activate();
             }
+            _levelAction.OnSetPoint?.Invoke(_flags.currentPlatformBreak);
+        }
+
+        private void LoosePlatform()
+        {
+            if (_flags.currentPlatformBreak >= _ballConfig.MaxPlatformBreak)
+            {
+                RaycastHit[] results = new RaycastHit[5];
+                var size = Physics.RaycastNonAlloc(transform.position + Vector3.up, Vector3.down, results, _breakPlatformDistance+1, _detectlayerMask);
+                for (int i = 0; i < size; i++)
+                {
+                    var hit = results[i];
+                     
+                    if (hit.transform.CompareTag("BreakPlatform"))
+                    {
+                        var platform = PlatformActivatorList.Instance.GetPlatformActivate(hit.transform.GetInstanceID());
+                        if (platform != null)
+                        {
+                            platform.ActivateBoom(_ballMaterial);
+                            _levelAction.OnSetPoint?.Invoke(_flags.currentPlatformBreak);
+                            return;
+                        }
+                    }
+                }
+            }
             
+            _flags.gravity = false;
+            _levelAction.OnLoos?.Invoke();
+            _levelAction.OnEndLevel?.Invoke();
+            _ballAction.DeactivateGravity?.Invoke();
+        }
+
+        private void FinishPlatform(Transform platformTransform)
+        {
+            _ballAction?.Jump();
+            BallGroundedEffect.Instance.GroundedEffect(platformTransform);
+            ComboTrail.Instance.Deactivate();
+            _levelAction.OnFinishLevel?.Invoke();
+            _ballAction?.Jump();
+            
+            //TODO Activate final Effect
+        }
+
+        private void MultyplyPlatform(Transform platformTransform)
+        {
+            _levelAction.OnActivateFinalPointAnimation();
+            _ballAction.DeactivateGravity?.Invoke();
+            _flags.gravity = false;
+            
+            //TODO Activate final Effect
         }
         
         private void DiactivateCollision()
