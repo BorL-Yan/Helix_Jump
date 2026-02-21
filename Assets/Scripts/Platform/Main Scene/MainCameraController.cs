@@ -94,17 +94,26 @@ namespace Platform.Main_Scene
         }
         private bool IsPointerOverUI()
         {
+            // 1. Проверяем, существует ли EventSystem
             if (EventSystem.current == null) return false;
 
+            // 2. Получаем позицию указателя (мышь или первый тач)
+            // Pointer.current автоматически подхватывает и мышь, и касание
             Vector2 pointerPosition = Pointer.current != null ? Pointer.current.position.ReadValue() : Vector2.zero;
+
+            // 3. Создаем данные события для рейкаста
             PointerEventData eventData = new PointerEventData(EventSystem.current)
             {
                 position = pointerPosition
             };
-
+            
+            // 4. Список для записи результатов попадания в UI
             List<RaycastResult> results = new List<RaycastResult>();
+
+            // 5. Проводим рейкаст по всем графическим элементам (Canvas)
             EventSystem.current.RaycastAll(eventData, results);
 
+            // 6. Если в списке есть хотя бы один объект — значит, мы над UI
             return results.Count > 0;
         }
 

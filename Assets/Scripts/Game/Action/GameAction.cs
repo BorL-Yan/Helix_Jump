@@ -14,5 +14,4 @@ public class GameAction
     public Action<int> ActivateGameSelectPlatform;
     public Action MoveToActivePlatform;
     public Action<SelectingPlatform> MoveToPlatform;
-
 }

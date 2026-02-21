@@ -55,8 +55,12 @@ namespace Ball.Controller
             Vector3 scale = new Vector3(randomScale, 1, 2 - randomScale);
             _ball.localScale = scale;
 
-            _sequence.Append(_ball.DORotate(randomRotation, _rotateDuration, RotateMode.FastBeyond360).SetEase(Ease.OutExpo))
-                .Join(_ball.DOScale(Vector3.one, _scaleDuration).SetEase(Ease.OutBounce))
+            _sequence.Append(_ball.DOLocalRotate(randomRotation, _rotateDuration, RotateMode.Fast)).SetEase(Ease.OutQuint)
+                .Join(_ball.DOScale(scale, _scaleDuration)).SetEase(Ease.OutQuint)
+                .InsertCallback(_scaleDuration, () =>
+                {
+                    _ball.DOScale(Vector3.one, _scaleDuration * 2);
+                })
                 .OnComplete(() =>
                 {
                     _ball.localScale = Vector3.one;

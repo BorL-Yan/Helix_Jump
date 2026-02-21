@@ -11,6 +11,7 @@ public class GameManager : SingletonGame<GameManager>
     [SerializeField] private GameObject _menuCanvas;
     [SerializeField] private LevelLoadingUI _loadingUI;
     private GameObject _ball;
+
     public bool Inited { get; private set; }
     
     public GameAction Action { get; private set; }
@@ -62,4 +63,5 @@ public class GameManager : SingletonGame<GameManager>
         _menuCanvas.SetActive(true);
         _ball.SetActive(true);
     }
+    
 }
