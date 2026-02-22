@@ -34,10 +34,19 @@ public class GameManager : SingletonGame<GameManager>
         Inited = true;
         
         GameSave.Init();
+        GameObject prefab = Resources.Load<GameObject>("Ball/Ball_Menu");
+    
+        if(prefab != null)
+        {
+            // 1. Instantiate without a parent first
+            _ball = Instantiate(prefab);
         
-        GameObject obj = Resources.Load<GameObject>("Ball/Ball_Menu");
-        _ball = Instantiate(obj,transform);
-        
+            // 2. Try to set the parent manually
+            if (transform != null)
+            {
+                _ball.transform.SetParent(transform, false);
+            }
+        }
     }
 
     public void ActivateLevelScene()

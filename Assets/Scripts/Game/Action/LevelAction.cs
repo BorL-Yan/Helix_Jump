@@ -16,4 +16,6 @@ public class LevelAction
     public Action AddMultiplyCount;
     
     public Func<Vector3> GetFinshPosition;
+
+    public Action OnTakeKey;
 }

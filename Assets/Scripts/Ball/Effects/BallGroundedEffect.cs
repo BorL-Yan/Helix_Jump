@@ -18,7 +18,7 @@ namespace Ball.Controller
         public void Initialize(Transform ball)
         {
             _ball = ball;
-            _particleSystem.Pause();
+            _particleSystem.Clear();
         }
         
         private void Start()

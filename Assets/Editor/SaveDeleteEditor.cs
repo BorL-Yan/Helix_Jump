@@ -8,7 +8,7 @@ public class SaveDeleteEditor
     {
         GameSave.Init();
         var settings = GameSave.GetSettings();
-        settings.Level = 1;
+        settings = new GameSettings();
         GameSave.SetSettings(settings);
         GameSave.Save();
         

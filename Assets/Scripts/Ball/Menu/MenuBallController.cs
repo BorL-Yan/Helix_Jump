@@ -117,9 +117,7 @@ public class MenuBallController : MonoBehaviour
         if (Mathf.Abs(_rb.linearVelocity.y) < HangThreshold)
         {
             currentGravity *= HangGravityMultiplier;
-        }else 
-        
-        if (_rb.linearVelocity.y < 0)
+        }else if (_rb.linearVelocity.y < 0)
         {
             currentGravity *= FallMultiplier;
         }

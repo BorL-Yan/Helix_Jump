@@ -22,8 +22,11 @@ namespace Boot
         {
             if (GameManager.Instance == null)
             {
-                GameManager manager = Resources.Load<GameManager>("Menegers/GameBootstrap");
+                GameObject obj = Resources.Load<GameObject>("Menegers/GameBootstrap");
+                GameManager manager = Instantiate(obj).GetComponent<GameManager>();
                 Instantiate(manager);
+                manager.Initializ();
+                manager.CurrentActiveLevel = _levelEntry;
                 ActivateLevel(_levelEntry);
             }
             else

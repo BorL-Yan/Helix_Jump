@@ -10,7 +10,7 @@ namespace Ball.Controller
         private Material _comboMateril;
 
         [SerializeField] private ParticleSystem _ballFire;
-
+        [SerializeField] private SpriteRenderer _fireSprite;
         private Transform _target;
         
         private bool activated;
@@ -31,6 +31,7 @@ namespace Ball.Controller
             _renderer = _particles.GetComponent<ParticleSystemRenderer>();
             _particles.Pause();
             gameObject.SetActive(false);
+            _fireSprite.gameObject.SetActive(false);
             _ballFire.Pause();
         }
 
@@ -61,7 +62,8 @@ namespace Ball.Controller
             {
                 comboActivated = true;
                 _renderer.material = _defoultMateril;
-                _ballFire.Play();
+                //_ballFire.Play();
+                _fireSprite.gameObject.SetActive(true);
             }
         }
 
@@ -71,7 +73,8 @@ namespace Ball.Controller
             comboActivated = false;
             _particles.Stop();
             gameObject.SetActive(false);
-            _ballFire.Pause();
+            _fireSprite.gameObject.SetActive(false);
+            //_ballFire.Pause();
         }
         
         

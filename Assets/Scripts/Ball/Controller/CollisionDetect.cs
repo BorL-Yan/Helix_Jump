@@ -43,7 +43,7 @@ namespace Ball.Controller
         {
             if(!_activated) return;
             _activated = false;
-            Invoke("DiactivateCollision", 0.1f);
+            Invoke("DiactivateCollision", 0.02f);
             
             switch (collider.transform.tag)
             {
@@ -82,6 +82,11 @@ namespace Ball.Controller
                     //TODO final effect
                     
                     MultyplyPlatform(collider.transform);
+                    break;
+                }
+                case "Key":
+                {
+                    TakeKey();
                     break;
                 }
                 
@@ -160,6 +165,11 @@ namespace Ball.Controller
             _ballAction.DeactivateGravity?.Invoke();
         }
 
+        private void TakeKey()
+        {
+            _levelAction.OnTakeKey?.Invoke();
+        }
+        
         private void FinishPlatform(Transform platformTransform)
         {
             _ballAction?.Jump();

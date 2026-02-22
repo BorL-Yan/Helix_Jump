@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6a003d8c944bae8fbf59a341064d81, type: 3}
   m_Name: Ball Config
   m_EditorClassIdentifier: Assembly-CSharp::BallConfig
-  <JumpHeight>k__BackingField: 0.7
-  <TimeToApex>k__BackingField: 0.5
-  <FallMultiplier>k__BackingField: 1
-  <LowJumpMultiplier>k__BackingField: 2.5
-  <MaxFallSpeed>k__BackingField: 5
+  <JumpHeight>k__BackingField: 0.95
+  <TimeToApex>k__BackingField: 0.33
+  <FallMultiplier>k__BackingField: 0.4
+  <MaxFallSpeed>k__BackingField: 4.5
   <RotationSpeed>k__BackingField: 0.2
   <MaxPlatformBreak>k__BackingField: 3
+  <HangThreshold>k__BackingField: 0.1
+  <HangGravityMultiplier>k__BackingField: 0.5
   _materials:
   - {fileID: 2100000, guid: b743d3c566af62a44876e595c6b30ee8, type: 2}

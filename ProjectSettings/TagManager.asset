@@ -13,6 +13,7 @@ TagManager:
   - EnemyPlatform
   - MultiplyEmptyPlatform
   - MultiplyFinishPlatform
+  - Key
   layers:
   - Default
   - TransparentFX

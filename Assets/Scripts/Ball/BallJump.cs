@@ -47,7 +47,10 @@ public class BallJump : IStartable, IDisposable, IFixedTickable
     {
         float currentGravity = gravity;
         
-        if (_rb.linearVelocity.y < 0)
+        if (Mathf.Abs(_rb.linearVelocity.y) < _config.HangThreshold)
+        {
+            currentGravity *= _config.HangGravityMultiplier;
+        }else if (_rb.linearVelocity.y < 0)
         {
             currentGravity *= _config.FallMultiplier;
         }

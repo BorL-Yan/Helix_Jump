@@ -33,17 +33,17 @@ namespace Ball.Controller
             {
                 case 1:
                 {
-                    randomRotation = new Vector3(1, 0.1f, 0.1f);
+                    randomRotation = new Vector3(1, 0.3f, 0.2f);
                     break;
                 }
                 case 2:
                 {
-                    randomRotation = new Vector3(0.1f, 1, 0.1f);
+                    randomRotation = new Vector3(0.1f, 1, 0.4f);
                     break;
                 }
                 case 3:
                 {
-                    randomRotation = new Vector3(0.1f, 0.1f, 1);
+                    randomRotation = new Vector3(0.5f, 0.2f, 1);
                     break;
                 }
             }
@@ -55,7 +55,7 @@ namespace Ball.Controller
             Vector3 scale = new Vector3(randomScale, 1, 2 - randomScale);
             _ball.localScale = scale;
 
-            _sequence.Append(_ball.DOLocalRotate(randomRotation, _rotateDuration, RotateMode.Fast)).SetEase(Ease.OutQuint)
+            _sequence.Append(_ball.DORotate(randomRotation, _rotateDuration, RotateMode.FastBeyond360)).SetEase(Ease.OutCirc)
                 .Join(_ball.DOScale(scale, _scaleDuration)).SetEase(Ease.OutQuint)
                 .InsertCallback(_scaleDuration, () =>
                 {

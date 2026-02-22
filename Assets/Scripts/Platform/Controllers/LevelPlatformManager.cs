@@ -1,14 +1,15 @@
 using System;
-using System.Collections.Generic;
 using com.cyborgAssets.inspectorButtonPro;
 using Level.Controllers;
+using UnityEditor;
 using UnityEngine;
+using VContainer;
 
 
 public class LevelPlatformManager : MonoBehaviour
 {
     [field: SerializeField] public int PlatformsCount { get; private set; }
-    
+   
     private void OnValidate()
     {
         UpdatePlatformCount();

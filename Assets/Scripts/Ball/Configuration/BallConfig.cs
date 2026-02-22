@@ -13,6 +13,9 @@ public class BallConfig : ScriptableObject
 
     [field:SerializeField] public int MaxPlatformBreak { get; private set; } = 3; 
 
+    [field:SerializeField] public float HangThreshold { get; private set;} = 0.5f; 
+    [field:SerializeField] public float HangGravityMultiplier { get; private set;} = 0.1f;
+    
     
     [SerializeField] private List<Material> _materials;
     public Material GetMaterial()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
@@ -41,6 +42,7 @@ public static class GameSave
     public static void SetSettings(GameSettings settings)
     {
         currentSettings = settings;
+        Save();
     }
 }
 
@@ -56,4 +58,12 @@ public class GameSettings
     
     public bool Vibration = true;
     public bool SFX = true;
+
+    public List<LevelData> LevelData = new();
+}
+
+[Serializable]
+public class LevelData
+{
+    public bool TakeKey;
 }
