@@ -33,8 +33,6 @@ public class SingletonScene<T> : MonoBehaviour where T : Component
             Debug.LogWarning($"[{typeof(T).Name}] Duplicate instance found. Destroying: {gameObject.name}");
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
-
         Init();
     }
 

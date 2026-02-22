@@ -12,7 +12,6 @@ public class GameLifeTimeScope : LifetimeScope
         builder.RegisterInstance(_config);
         
         builder.Register<GameAction>(Lifetime.Singleton);
-        builder.Register<LevelAction>(Lifetime.Singleton);
         builder.Register<InputController>(Lifetime.Singleton)
             .AsSelf()
             .As<IStartable, IDisposable>();

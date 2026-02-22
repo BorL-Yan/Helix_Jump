@@ -122,6 +122,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2555807d216ee5740841721839217a12, type: 2}
+    - target: {fileID: -5161058975329073657, guid: 013a7f0dbedb3d24db2872da3eff838a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -5161058975329073657, guid: 013a7f0dbedb3d24db2872da3eff838a, type: 3}
+      propertyPath: m_TagString
+      value: EnemyPlatform
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 013a7f0dbedb3d24db2872da3eff838a, type: 3}
       propertyPath: m_Name
       value: Enemy _ 2

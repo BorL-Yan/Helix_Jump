@@ -28,20 +28,39 @@ namespace Ball.Controller
         {
             _sequence.Kill(true);
             _sequence = DOTween.Sequence();
+            Vector3 randomRotation = new Vector3();
+            switch (Random.Range(1,4))
+            {
+                case 1:
+                {
+                    randomRotation = new Vector3(1, 0.3f, 0.2f);
+                    break;
+                }
+                case 2:
+                {
+                    randomRotation = new Vector3(0.1f, 1, 0.4f);
+                    break;
+                }
+                case 3:
+                {
+                    randomRotation = new Vector3(0.5f, 0.2f, 1);
+                    break;
+                }
+            }
 
-            Vector3 randomRotation =_ball.eulerAngles + new Vector3(
-                Random.Range(_rotationRange.x, _rotationRange.y),
-                Random.Range(_rotationRange.x, _rotationRange.y),
-                Random.Range(_rotationRange.x, _rotationRange.y)
-            );
+            randomRotation = _ball.eulerAngles + randomRotation * Random.Range(_rotationRange.x, _rotationRange.y);
              // rs = 0.1 => x = 0.9 => z = 1.1 
              
             float randomScale = Random.Range(1 - _scaleRange, 1 + _scaleRange);
             Vector3 scale = new Vector3(randomScale, 1, 2 - randomScale);
+            _ball.localScale = scale;
 
-            _sequence.Append(_ball.DOLocalRotate(randomRotation, _rotateDuration, RotateMode.FastBeyond360)).SetEase(Ease.OutCubic)
-                .Join(_ball.DOScale(scale, _scaleDuration))
-                .Append(_ball.DOScale(Vector3.one, _scaleDuration))
+            _sequence.Append(_ball.DORotate(randomRotation, _rotateDuration, RotateMode.FastBeyond360)).SetEase(Ease.OutCirc)
+                .Join(_ball.DOScale(scale, _scaleDuration)).SetEase(Ease.OutQuint)
+                .InsertCallback(_scaleDuration, () =>
+                {
+                    _ball.DOScale(Vector3.one, _scaleDuration * 2);
+                })
                 .OnComplete(() =>
                 {
                     _ball.localScale = Vector3.one;

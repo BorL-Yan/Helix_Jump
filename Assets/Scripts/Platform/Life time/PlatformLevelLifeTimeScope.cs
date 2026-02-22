@@ -18,6 +18,5 @@ public class PlatformLevelLifeTimeScope : LifetimeScope
         builder.Register<PlatformRotation>(Lifetime.Scoped)
             .AsSelf()
             .As<IStartable, IDisposable>();
-
     }
 }

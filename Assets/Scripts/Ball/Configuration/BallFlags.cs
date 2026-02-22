@@ -4,5 +4,7 @@ namespace Ball.Configuration
     {
         public bool isGround;
         public int currentPlatformBreak;
+        public int multyplyCount  = 2;
+        public bool gravity;
     }
 }

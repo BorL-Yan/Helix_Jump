@@ -11,6 +11,9 @@ TagManager:
   - FinishPlatform
   - MultiplyPlatform
   - EnemyPlatform
+  - MultiplyEmptyPlatform
+  - MultiplyFinishPlatform
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - UI
   - Player
   - Platform
-  - Enemy
+  - SelectorPlatform
   - 
   - 
   - 
