@@ -1,0 +1,2 @@
+public class FunkySkinManager : SkinManager
+{ }

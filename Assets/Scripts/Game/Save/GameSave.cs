@@ -46,20 +46,65 @@ public static class GameSave
     }
 }
 
-[Serializable]
-public class GameSettings
+[System.Serializable]
+public class GameSettings : ISerializationCallbackReceiver
 {
     public int Level = 1;
     public int ActiveLevelSkin = 1;
 
-    public int Point = 0;
+    public int Coin = 0;
     public int Score = 0;
     public int Key = 0;
     
     public bool Vibration = true;
     public bool SFX = true;
+    
+    public BallSkinType ActiveBallSkin;
 
     public List<LevelData> LevelData = new();
+    public Dictionary<BallSkinType, bool> ActiveSkins = new();
+
+    
+    // Эти списки БУДУТ сохранены
+    [SerializeField] private List<BallSkinType> _skinKeys = new();
+    [SerializeField] private List<bool> _skinValues = new();
+
+    // Перед сохранением перекладываем данные из Dictionary в List
+    public void OnBeforeSerialize()
+    {
+        Debug.Log("OnBeforeSerialize");
+        
+        _skinKeys.Clear();
+        _skinValues.Clear();
+        foreach (var pair in ActiveSkins)
+        {
+            _skinKeys.Add(pair.Key);
+            _skinValues.Add(pair.Value);
+        }
+    }
+
+    // После загрузки перекладываем данные из List обратно в Dictionary
+    public void OnAfterDeserialize()
+    {
+        Debug.Log("OnAfterDeserialize");
+        ActiveSkins = new Dictionary<BallSkinType, bool>();
+        for (int i = 0; i != Math.Min(_skinKeys.Count, _skinValues.Count); i++)
+        {
+            ActiveSkins.Add(_skinKeys[i], _skinValues[i]);
+        }
+    }
+
+    public GameSettings()
+    {
+        if (ActiveSkins.Count == 0)
+        {
+            ActiveSkins[BallSkinType.Sphere] = true;
+            ActiveBallSkin = BallSkinType.Sphere;
+            _skinKeys.Add(BallSkinType.Sphere);
+            _skinValues.Add(true);
+        }
+    }
+    
 }
 
 [Serializable]

@@ -36,6 +36,20 @@ namespace Ball.Controller
             var children = GetComponentsInChildren<BallMaterial>(true);
             _materials = new List<BallMaterial>(children);
         }
+
+        public void SetMaterial(Material newMaterial)
+        {
+            if (newMaterial == null)
+            {
+                Debug.LogWarning("[BallMaterialController] Cannot set null material");
+                return;
+            }
+
+            foreach (var material in _materials)
+            {
+                material.SetMaterial(newMaterial);
+            }
+        }
         
     }
 }

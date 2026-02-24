@@ -15,6 +15,8 @@ public class GameAction
     public Action MoveToActivePlatform;
     public Action<SelectingPlatform> MoveToPlatform;
 
-
+    public Action<BallSkinType> OnSelectBallSkin;
+    
+    
     public Action OnTakeKey;
 }

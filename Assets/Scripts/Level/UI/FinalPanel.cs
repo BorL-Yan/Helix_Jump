@@ -45,10 +45,10 @@ namespace Level
             var save = GameSave.GetSettings();
 
             _levelText.text = $"Level {1} passed";
-            _currentPointText.text = NumberFormatter.FormatValue(save.Point);
-            _pointText.text = save.Point.ToString();
+            _currentPointText.text = NumberFormatter.FormatValue(save.Coin);
+            _pointText.text = save.Coin.ToString();
 
-            int currentPoint = save.Point;
+            int currentPoint = save.Coin;
 
             int point = currentPoint + LEVELPOINT;
             DOTween.To(() => currentPoint, x => currentPoint = x, point, 0.5f)
@@ -97,7 +97,7 @@ namespace Level
                     callback?.Invoke();
                 });
             
-            save.Point =  currentPoint;
+            save.Coin =  currentPoint;
             GameSave.SetSettings(save);
             GameSave.Save();
         }
