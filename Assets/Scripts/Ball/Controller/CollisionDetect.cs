@@ -102,7 +102,6 @@ namespace Ball.Controller
                 for (int i = 0; i < size; i++)
                 {
                     var hit = results[i];
-                     
                     if (hit.transform.CompareTag("BreakPlatform"))
                     {
                         var platform = PlatformActivatorList.Instance.GetPlatformActivate(hit.transform.GetInstanceID());
@@ -110,6 +109,7 @@ namespace Ball.Controller
                         {
                             platform.ActivateBoom(_ballMaterial);
                             _levelAction.OnSetPoint?.Invoke(_flags.currentPlatformBreak);
+                            _levelAction.OnPointAnimation?.Invoke(_flags.currentPlatformBreak);
                         }
                     }
                 }

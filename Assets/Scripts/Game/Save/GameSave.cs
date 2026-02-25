@@ -52,6 +52,7 @@ public class GameSettings : ISerializationCallbackReceiver
     public int Level = 1;
     public int ActiveLevelSkin = 1;
 
+    public int LeaderID = 3000;
     public int Coin = 0;
     public int Score = 0;
     public int Key = 0;

@@ -5,13 +5,8 @@ namespace UI_Scripts.Leaderboard
 {
     public class LeaderboardID : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _score;
-        [SerializeField] private TMP_Text _int;
+        public TMP_Text score;
+        public TMP_Text id;
         
-        public void SetBoard(int value, int score)
-        {
-            _score.text = NumberFormatter.FormatValue(score);
-            _int.text = value.ToString();
-        }
     }
 }

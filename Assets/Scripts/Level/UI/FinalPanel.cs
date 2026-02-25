@@ -19,7 +19,7 @@ namespace Level
         [SerializeField] private TMP_Text _currentPointText;
 
         [SerializeField] private GameObject _coinObj;
-        private int instantiateCount = 10;
+        private int instantiateCount = 30;
         [SerializeField] private RectTransform _spawnRadius;
         [SerializeField] private RectTransform _startPosition;
         [SerializeField] private RectTransform _endPosition;
@@ -87,8 +87,22 @@ namespace Level
             {
                 float duration = Random.Range(0.3f, 0.6f);
                 coinSequence
-                    .Join(coin.transform.DOLocalMove(_endPosition.localPosition, duration));
+                    .Join(coin.transform.DOLocalMove(_endPosition.localPosition, duration)
+                        .OnComplete(()=>
+                        {
+                            coin.transform.localScale = Vector3.zero;
+                        }))
+                    .Join(coin.transform.DOScale(0.8f, 0.2f).SetEase(Ease.OutBack));
+                    
             }
+
+            //coinSequence.AppendInterval(0.001f);
+            
+            // foreach (var coin in coins)
+            // {
+            //     coinSequence
+            //         .Join(coin.transform.DOScale(0.3f, 0.2f));
+            // }
             
             coinSequence
                 .OnComplete(() =>
@@ -97,7 +111,7 @@ namespace Level
                     callback?.Invoke();
                 });
             
-            save.Coin =  currentPoint;
+            save.Coin =  point;
             GameSave.SetSettings(save);
             GameSave.Save();
         }

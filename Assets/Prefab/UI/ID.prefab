@@ -53,8 +53,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8df018009f42c0b6e69b6cd3f012db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI_Scripts.Leaderboard.LeaderboardID
-  _score: {fileID: 8016868845957931685}
-  _int: {fileID: 5650271890687057573}
+  score: {fileID: 8016868845957931685}
+  id: {fileID: 5650271890687057573}
 --- !u!1 &1000138675116034765
 GameObject:
   m_ObjectHideFlags: 0
