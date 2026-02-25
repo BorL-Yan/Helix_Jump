@@ -126,7 +126,7 @@ TextureImporter:
       name: UI botttoms_0
       rect:
         serializedVersion: 2
-        x: 37
+        x: 35
         y: 2258
         width: 159
         height: 440
@@ -148,8 +148,8 @@ TextureImporter:
       name: UI botttoms_1
       rect:
         serializedVersion: 2
-        x: 270
-        y: 2488
+        x: 271
+        y: 2487
         width: 509
         height: 210
       alignment: 0
@@ -214,8 +214,8 @@ TextureImporter:
       name: UI botttoms_4
       rect:
         serializedVersion: 2
-        x: 808
-        y: 2333
+        x: 811
+        y: 2337
         width: 133
         height: 142
       alignment: 0
@@ -236,7 +236,7 @@ TextureImporter:
       name: UI botttoms_5
       rect:
         serializedVersion: 2
-        x: 964
+        x: 965
         y: 2411
         width: 107
         height: 107
@@ -258,8 +258,8 @@ TextureImporter:
       name: UI botttoms_6
       rect:
         serializedVersion: 2
-        x: 1025
-        y: 2340
+        x: 1024
+        y: 2341
         width: 63
         height: 62
       alignment: 0
@@ -280,7 +280,7 @@ TextureImporter:
       name: UI botttoms_8
       rect:
         serializedVersion: 2
-        x: 884
+        x: 882
         y: 2191
         width: 87
         height: 91
@@ -302,8 +302,8 @@ TextureImporter:
       name: UI botttoms_9
       rect:
         serializedVersion: 2
-        x: 1020
-        y: 2267
+        x: 1019
+        y: 2265
         width: 71
         height: 59
       alignment: 0
@@ -324,8 +324,8 @@ TextureImporter:
       name: Active
       rect:
         serializedVersion: 2
-        x: 16
-        y: 2004
+        x: 18
+        y: 2010
         width: 245
         height: 234
       alignment: 0
@@ -346,8 +346,8 @@ TextureImporter:
       name: UI botttoms_13
       rect:
         serializedVersion: 2
-        x: 304
-        y: 2142
+        x: 306
+        y: 2145
         width: 64
         height: 83
       alignment: 0
@@ -368,8 +368,8 @@ TextureImporter:
       name: UI botttoms_14
       rect:
         serializedVersion: 2
-        x: 397
-        y: 2008
+        x: 396
+        y: 2010
         width: 246
         height: 247
       alignment: 0
@@ -391,7 +391,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 664
-        y: 2122
+        y: 2123
         width: 69
         height: 67
       alignment: 0
@@ -413,7 +413,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 770
-        y: 2124
+        y: 2125
         width: 59
         height: 61
       alignment: 0
@@ -435,7 +435,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1024
-        y: 2172
+        y: 2173
         width: 63
         height: 72
       alignment: 0
@@ -478,8 +478,8 @@ TextureImporter:
       name: UI botttoms_19
       rect:
         serializedVersion: 2
-        x: 678
-        y: 2061
+        x: 677
+        y: 2062
         width: 40
         height: 41
       alignment: 0
@@ -500,8 +500,8 @@ TextureImporter:
       name: UI botttoms_20
       rect:
         serializedVersion: 2
-        x: 871
-        y: 2050
+        x: 870
+        y: 2048
         width: 116
         height: 117
       alignment: 0
@@ -519,55 +519,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI botttoms_21
-      rect:
-        serializedVersion: 2
-        x: 58
-        y: 121
-        width: 636
-        height: 112
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 167, y: 0, z: 26, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8412518ec073d5d478ff61ef0d6c72b4
-      internalID: -1016317977
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI botttoms_22
-      rect:
-        serializedVersion: 2
-        x: 731
-        y: 2015
-        width: 348
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 60823585d3c811243832bd0aef7dd83e
-      internalID: -2025232582
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: UI botttoms_23
       rect:
         serializedVersion: 2
         x: 49
-        y: 1820
+        y: 1821
         width: 116
         height: 114
       alignment: 0
@@ -588,8 +544,8 @@ TextureImporter:
       name: UI botttoms_27
       rect:
         serializedVersion: 2
-        x: 420
-        y: 1706
+        x: 421
+        y: 1705
         width: 212
         height: 243
       alignment: 0
@@ -610,7 +566,7 @@ TextureImporter:
       name: UI botttoms_28
       rect:
         serializedVersion: 2
-        x: 646
+        x: 645
         y: 1706
         width: 216
         height: 243
@@ -632,7 +588,7 @@ TextureImporter:
       name: Deactive
       rect:
         serializedVersion: 2
-        x: 878
+        x: 876
         y: 1711
         width: 246
         height: 243
@@ -654,8 +610,8 @@ TextureImporter:
       name: UI botttoms_30
       rect:
         serializedVersion: 2
-        x: 201
-        y: 1824
+        x: 200
+        y: 1825
         width: 99
         height: 123
       alignment: 0
@@ -673,38 +629,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI botttoms_31
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 1686
-        width: 274
-        height: 113
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 49, y: 0, z: 50, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 01153b2716febb84e9bb02dbc7cac6e6
-      internalID: 223928187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: UI botttoms_32
       rect:
         serializedVersion: 2
         x: 0
-        y: 1542
+        y: 1541
         width: 130
-        height: 126
+        height: 127
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 13, y: 10, z: 9, w: 10}
       customData: 
       outline: []
       physicsShape: []
@@ -720,8 +654,8 @@ TextureImporter:
       name: UI botttoms_33
       rect:
         serializedVersion: 2
-        x: 283
-        y: 1396
+        x: 279
+        y: 1400
         width: 508
         height: 209
       alignment: 0
@@ -742,13 +676,13 @@ TextureImporter:
       name: UI botttoms_34
       rect:
         serializedVersion: 2
-        x: 864
-        y: 1447
+        x: 865
+        y: 1449
         width: 245
-        height: 220
+        height: 218
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 46, y: 48, z: 44, w: 43}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -764,8 +698,8 @@ TextureImporter:
       name: UI botttoms_35
       rect:
         serializedVersion: 2
-        x: 281
-        y: 1140
+        x: 277
+        y: 1139
         width: 513
         height: 209
       alignment: 0
@@ -786,8 +720,8 @@ TextureImporter:
       name: UI botttoms_36
       rect:
         serializedVersion: 2
-        x: 284
-        y: 877
+        x: 279
+        y: 869
         width: 507
         height: 210
       alignment: 0
@@ -805,111 +739,111 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI botttoms_7
+      name: UI bottoms_0
       rect:
         serializedVersion: 2
-        x: 167
-        y: 667
-        width: 841
-        height: 158
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 102, y: 0, z: 95, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b3efb80490bd4984eaed6269bafa1d6a
-      internalID: -1265630111
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI botttoms_10
-      rect:
-        serializedVersion: 2
-        x: 538
-        y: 274
-        width: 241
-        height: 336
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 39ae8f78726d5f541b53f372496b85d4
-      internalID: 2119924757
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI botttoms_11
-      rect:
-        serializedVersion: 2
-        x: 824
-        y: 275
-        width: 241
-        height: 335
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a702096187745b48bd32df3756ae73b
-      internalID: -2128188079
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI botttoms_12
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 401
-        width: 432
-        height: 211
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 26, y: 22, z: 29, w: 14}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba1647143e38b4345aeca4530fa8c3bb
-      internalID: 1868563413
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI botttoms_24
-      rect:
-        serializedVersion: 2
-        x: 58
+        x: 59
         y: 0
-        width: 636
-        height: 109
+        width: 634
+        height: 110
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 170, y: 0, z: 27, w: 0}
+      border: {x: 165, y: 0, z: 33, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3966bf0c823be947accde4f9acc01e3
-      internalID: -530394300
+      spriteID: 1565e667a12091b49908c856ecf71aee
+      internalID: -1473678060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI bottoms_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 122
+        width: 634
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 165, y: 0, z: 33, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7da1be67dcfd9534294b5d6bbda6a57a
+      internalID: 1036721431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI bottoms_2
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 400
+        width: 431
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 25, y: 29, z: 38, w: 36}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a85cdc2712b9d584ebaf5f5cfe16c121
+      internalID: -951473206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI bottoms_3
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 668
+        width: 837
+        height: 152
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 101, y: 0, z: 94, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c8998589bc6a34a8cd86c0aee7ef11
+      internalID: 1283281500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI bottoms_4
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 274
+        width: 237
+        height: 353
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a3abbbc0bc01b04bb95a1981599876b
+      internalID: -399090399
       vertices: []
       indices: 
       edges: []
@@ -932,11 +866,15 @@ TextureImporter:
     nameFileIdTable:
       Active: 499847012
       Deactive: -68780018
+      UI bottoms_0: -1473678060
+      UI bottoms_1: 1036721431
+      UI bottoms_2: -951473206
+      UI bottoms_3: 1283281500
+      UI bottoms_4: -399090399
       UI botttoms_0: 1143245860
       UI botttoms_1: 734848445
       UI botttoms_10: 2119924757
       UI botttoms_11: -2128188079
-      UI botttoms_12: 1868563413
       UI botttoms_13: -1571042725
       UI botttoms_14: 1367522058
       UI botttoms_15: 1475799159

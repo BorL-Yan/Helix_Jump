@@ -9,9 +9,11 @@ public class SaveDeleteEditor
         GameSave.Init();
         var settings = GameSave.GetSettings();
         settings = new GameSettings();
+
+        settings.Coin = 1000;
         GameSave.SetSettings(settings);
         GameSave.Save();
         
-        Debug.Log($"Deleted level save {settings.Level}");
+        Debug.Log($"Deleted level save level : {settings.Level}, Coin { settings.Coin}");
     }
 }

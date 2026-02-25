@@ -2,11 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 public abstract class UIButton : MonoBehaviour, IPointerClickHandler
 {
-    protected float _clickScale = 0f;
-    protected float _clickDureation = 0f;
+    [SerializeField] protected float _clickScale = 1.2f;
+    [SerializeField] protected float _clickDuration = 0.125f;
     protected Sequence anim;
     public event Action OnClick;
 
@@ -14,26 +15,24 @@ public abstract class UIButton : MonoBehaviour, IPointerClickHandler
     {
         ButtonAnimation();
     }
-
+    
     protected virtual void ButtonAnimation()
     {
-        Click();
-        OnClick?.Invoke();
-        /*anim?.Kill();
+        anim?.Kill();
         anim = DOTween.Sequence();
-        anim.Append(transform.DOScale(Vector3.one*_clickScale, _clickDureation))
+        anim.Append(transform.DOScale(Vector3.one *_clickScale, _clickDuration))
             .AppendCallback(() =>
             {
                 Click();
                 OnClick?.Invoke();
             })
-            .Append(transform.DOScale(Vector3.one, _clickDureation));*/
+            .Append(transform.DOScale(Vector3.one, _clickDuration));
     }
     
     protected abstract void Click();
     
-    /*private void OnDestroy()
+    private void OnDestroy()
     {
         anim?.Kill();
-    }*/
+    }
 }

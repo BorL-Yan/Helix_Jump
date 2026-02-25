@@ -76,7 +76,6 @@ public class MenuBallController : MonoBehaviour
 
     private void SetPosition()
     {
-        Debug.Log($"SetPosition {_platform.transform.position}, Platform Name : {_platform.transform.parent.name}");
         transform.position = _platform.transform.position + Vector3.up * JumpHeight;
     }
 

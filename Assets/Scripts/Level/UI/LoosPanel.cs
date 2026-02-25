@@ -19,7 +19,7 @@ namespace Level
         
         private void Start()
         {
-            loosPanel.SetActive(false);
+            SetActive(false);
         }
         
         [ProButton]

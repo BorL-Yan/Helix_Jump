@@ -24,5 +24,19 @@ public class BallConfig : ScriptableObject
         
         return _materials[level % _materials.Count];
     }
+
+    public Material GetMaterial(int index)
+    {
+        if (_materials == null || index < 0 || index >= _materials.Count)
+        {
+            return _materials != null && _materials.Count > 0 ? _materials[0] : null;
+        }
+        return _materials[index];
+    }
+
+    public int GetMaterialCount()
+    {
+        return _materials != null ? _materials.Count : 0;
+    }
     
 }

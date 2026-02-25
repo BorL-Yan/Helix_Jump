@@ -15,7 +15,5 @@ public class GameLifeTimeScope : LifetimeScope
         builder.Register<InputController>(Lifetime.Singleton)
             .AsSelf()
             .As<IStartable, IDisposable>();
-        
-        GameSave.Init();
     }    
 }

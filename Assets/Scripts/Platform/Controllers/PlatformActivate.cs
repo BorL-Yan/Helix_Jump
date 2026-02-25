@@ -19,6 +19,7 @@ namespace Level.Controllers
             gameObject.SetActive(false);
         }
         
+        
         private void OnEnable()
         {
             int id = gameObject.transform.GetInstanceID();
