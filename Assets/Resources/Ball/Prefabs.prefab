@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4082833084767621995}
   - component: {fileID: 5989129667509555375}
   - component: {fileID: 4353797793488559821}
+  - component: {fileID: 5403807623365691870}
   m_Layer: 0
   m_Name: Prefabs
   m_TagString: Untagged
@@ -91,16 +92,39 @@ MonoBehaviour:
   _ballSkins:
   - skinType: 5
     skin: {fileID: 6362061878023752117}
+    sprite: {fileID: 0}
   - skinType: 1
     skin: {fileID: 8583531167442728031}
+    sprite: {fileID: 0}
   - skinType: 4
     skin: {fileID: 3761039864114316310}
+    sprite: {fileID: 0}
   - skinType: 2
     skin: {fileID: 6717775628341328845}
+    sprite: {fileID: 0}
   - skinType: 3
     skin: {fileID: 1386455468123489014}
+    sprite: {fileID: 0}
   - skinType: 6
     skin: {fileID: 3820184090778690499}
+    sprite: {fileID: 0}
+--- !u!114 &5403807623365691870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8728649127158147204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d28377730042c981c02fa874a04a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Ball.Controller.ChangeBallColor
+  _materialController: {fileID: 5989129667509555375}
+  _trailRenderer: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _particleSystem: {fileID: 0}
+  _jumpParticle: {fileID: 0}
 --- !u!1001 &2304932849514135463
 PrefabInstance:
   m_ObjectHideFlags: 0

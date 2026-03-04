@@ -9,7 +9,7 @@ namespace Ball.Controller
         [SerializeField] private SpriteRenderer _effectMat;
         [SerializeField] private ParticleSystem _particleSystem;
 
-        [SerializeField] private Color _color;
+        private Color _color;
         [SerializeField] private float _fadeOutDuration;
         private Sequence _sequence;
 
@@ -26,6 +26,7 @@ namespace Ball.Controller
             _particleSystem.transform.SetParent(PlatformActivatorList.Instance.transform);
             _particleSystem.transform.localScale = Vector3.one;
             transform.SetParent(null);
+            _color = _effectMat.color;
             _effectMat.color = new Color(0,0,0,0);
         }
 

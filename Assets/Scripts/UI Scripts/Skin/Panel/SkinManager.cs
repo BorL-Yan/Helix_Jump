@@ -10,30 +10,19 @@ using VContainer;
 using Random = UnityEngine.Random;
 
 
-public class SkinManager : MonoBehaviour
+public abstract class SkinManager : MonoBehaviour
 {
     [SerializeField] protected List<BallSkinButton> _skins;
     [SerializeField] protected BuySkin _buySkin;
 
-    private GameAction _gameAction;
-    
-    
-    
     private BallSkinType activeSkin;
     private BallSkinButton _activeSkinButton;
-
-    [Inject]
-    public void Construct(GameAction gameAction)
-    {
-        _gameAction = gameAction;
-    }
-    
     
     private void OnEnable()
     {
         LoadActiveSkin();
     }
-
+    
     public void SelectSkin(BallSkinButton skinButton)
     {
         activeSkin = skinButton.SkinID;
@@ -53,7 +42,6 @@ public class SkinManager : MonoBehaviour
                 {
                     _activeSkinButton = skin;
                     skin.Select();
-                    Debug.Log($"skin id {skin.SkinID}");
                 }
                 else if (value)
                 {
@@ -77,14 +65,7 @@ public class SkinManager : MonoBehaviour
     {
         var settings = GameSave.GetSettings();
         activeSkin = settings.ActiveBallSkin;
-        Debug.Log($"🔄 Loaded Active Skin: {activeSkin}");
-
-        Debug.Log(settings.ActiveSkins.Count);
-        foreach (var item in settings.ActiveSkins)
-        {
-            Debug.Log($"id : {item.Key} : value {item.Value}");
-        }
-        
+     
         UpdateUI();
     }
     private void SaveSkin(BallSkinType type)
@@ -93,14 +74,8 @@ public class SkinManager : MonoBehaviour
         settings.ActiveBallSkin = type;
         settings.ActiveSkins[type] = true;
         
-        Debug.Log(settings.ActiveSkins.Count);
-        foreach (var item in settings.ActiveSkins)
-        {
-            Debug.Log($"id : {item.Key} : value {item.Value}");
-        }
         GameSave.SetSettings(settings);
         GameSave.Save();
-        Debug.Log("💾 Skin Saved To GameSave");
     }
     
     

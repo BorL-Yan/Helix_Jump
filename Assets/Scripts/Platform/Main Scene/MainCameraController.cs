@@ -181,7 +181,7 @@ namespace Platform.Main_Scene
                    viewportPos.x > 0 && viewportPos.x < 1 &&
                    viewportPos.y > 0 && viewportPos.y < 1;
         }
-        
+
         private void UpdateGoToButton()
         {
             if (platform == null)
@@ -190,10 +190,25 @@ namespace Platform.Main_Scene
                 return;
             }
 
-            bool isVisible = IsPlatformVisible(platform.transform);
+            Vector3 viewportPos = _camera.WorldToViewportPoint(platform.transform.position);
+
+            bool isVisible = viewportPos.z > 0 && 
+                             viewportPos.x > 0 && viewportPos.x < 1 && 
+                             viewportPos.y > 0 && viewportPos.y < 1;
 
             goToActiveButton.SetActive(!isVisible);
             _playButton.SetActive(isVisible);
+
+            if (!isVisible)
+            {
+                bool isUp = viewportPos.y > 0.5f && viewportPos.z > 0;
+
+                ActiveLevelUI arrowScript = goToActiveButton.GetComponent<ActiveLevelUI>();
+                if (arrowScript != null)
+                {
+                    arrowScript.SetDirection(isUp);
+                }
+            }
         }
 
     }

@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 8032971738462915297}
   - component: {fileID: 1734469610433904533}
   m_Layer: 0
-  m_Name: Effect
+  m_Name: Jump Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10470,7 +10470,7 @@ GameObject:
   - component: {fileID: 881556668946591144}
   - component: {fileID: 7013667002768780547}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15409,9 +15409,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -53.593
       objectReference: {fileID: 0}
+    - target: {fileID: 5403807623365691870, guid: f4278050d43b637478e0f04eba4959b7, type: 3}
+      propertyPath: _jumpParticle
+      value: 
+      objectReference: {fileID: 881556668946591144}
+    - target: {fileID: 5403807623365691870, guid: f4278050d43b637478e0f04eba4959b7, type: 3}
+      propertyPath: _trailRenderer
+      value: 
+      objectReference: {fileID: 1388860218466084092}
+    - target: {fileID: 5403807623365691870, guid: f4278050d43b637478e0f04eba4959b7, type: 3}
+      propertyPath: _particleSystem
+      value: 
+      objectReference: {fileID: 1731292181076707540}
+    - target: {fileID: 5403807623365691870, guid: f4278050d43b637478e0f04eba4959b7, type: 3}
+      propertyPath: _spriteRenderer
+      value: 
+      objectReference: {fileID: 8032971738462915297}
     - target: {fileID: 8728649127158147204, guid: f4278050d43b637478e0f04eba4959b7, type: 3}
       propertyPath: m_Name
-      value: Prefabs
+      value: Pref
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

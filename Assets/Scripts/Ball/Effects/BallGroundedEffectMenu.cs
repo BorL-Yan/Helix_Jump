@@ -12,17 +12,19 @@ namespace Ball.Controller
         private float _circleScale;
         private float _circleAlpha;
         
-        [SerializeField] private Color _color;
+        private Color _color;
         [SerializeField] private float _fadeOutDuration;
         [SerializeField] private float _circleFadeOutDuration;
         private Sequence _sequence;
 
         private void Start()
         {
-            _effect.color = _color;
+            _color = _effect.color;
+            _effect.color = new Color(_color.r, _color.g, _color.b, 0);
             _circleScale = _circle.transform.localScale.x;
             _circle.transform.localScale = Vector3.zero;
             _circleAlpha = _circle.color.a;
+            _circle.color = new Color(_circle.color.r, _circle.color.g, _circle.color.b, 0);
         }
 
         public void Activate(Vector3 pos)

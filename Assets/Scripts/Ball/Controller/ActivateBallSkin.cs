@@ -6,10 +6,16 @@ namespace Ball.Controller
     public class ActivateBallSkin : MonoBehaviour
     {
         [SerializeField] private List<BallSkin> _ballSkins;
-
+        [SerializeField] private SpriteRenderer _spriteRenderer;
         private GameObject _activeSkin;
         
         private void Awake()
+        {
+            SelectBallSkin();
+            _spriteRenderer = GetComponent<ChangeBallColor>()._spriteRenderer;
+        }
+
+        private void SelectBallSkin()
         {
             foreach (var item in _ballSkins)
             {
@@ -17,19 +23,24 @@ namespace Ball.Controller
             }
             
             var ballskin = GameSave.GetSettings().ActiveBallSkin;
-            _activeSkin = _ballSkins.Find(x => x.skinType == ballskin).skin;
+            
+            var skin =_ballSkins.Find(x => x.skinType == ballskin);
+            _activeSkin = skin.skin;
             _activeSkin.SetActive(true);
+            _spriteRenderer.sprite = skin.sprite;
         }
-
+        
         
         private void OnEnable()
         {
+            SelectBallSkin();
             GameManager.Instance.Action.OnSelectBallSkin += Activate;
         }
 
         private void OnDisable()
         {
-            GameManager.Instance.Action.OnSelectBallSkin -= Activate;
+            if(GameManager.Instance != null)
+                GameManager.Instance.Action.OnSelectBallSkin -= Activate;
         }
 
         private void Activate(BallSkinType skinType)

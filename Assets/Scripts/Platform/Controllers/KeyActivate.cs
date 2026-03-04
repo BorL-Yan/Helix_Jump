@@ -53,7 +53,6 @@ namespace Platform.Controllers
             
             if (settings.LevelData[level - 1 ].TakeKey == false)
             {
-                Debug.Log("Activate Level " + level);
                 _keyParent = new GameObject("Key");
                 _keyParent.transform.SetParent(this.transform);
                 

@@ -47,7 +47,6 @@ namespace Level
             _healthBarSequence.Append(DOTween.To(() => time, x => time = x, 0f, _endDuration)
                     .OnUpdate(() =>
                     {
-                        Debug.Log(time);
                         _healthBar.fillAmount = time;
                     }).SetEase(Ease.Linear))
                 .OnComplete(() =>

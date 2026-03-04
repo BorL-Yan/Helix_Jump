@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ namespace UI_Scripts.Skin
         private bool activateBuy;
 
         private Image _raycastImage;
-
+        
         private void Awake()
         {
             _raycastImage = GetComponent<Image>();
@@ -24,14 +25,13 @@ namespace UI_Scripts.Skin
         {
             activateBuy = true;
             _closeIcon.SetActive(false);
+
         }
 
         public void UpdatePrice()
         {
             currentPrice = 100 * ((_skinManager.GetActiveSkinCount() - 1) * 4);
             currentPrice = Mathf.Max(100, currentPrice);
-            
-            Debug.Log($"PRice : {currentPrice}");
             
             _price.text = currentPrice.ToString();
         }
@@ -62,5 +62,6 @@ namespace UI_Scripts.Skin
             GameSave.SetSettings(settings);
             GameSave.Save();
         }
+        
     }
 }

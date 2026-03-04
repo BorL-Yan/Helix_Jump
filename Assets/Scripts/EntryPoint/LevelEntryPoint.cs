@@ -24,7 +24,6 @@ namespace Boot
             {
                 GameObject obj = Resources.Load<GameObject>("Menegers/GameBootstrap");
                 GameManager manager = Instantiate(obj).GetComponent<GameManager>();
-                Instantiate(manager);
                 manager.Initializ();
                 manager.CurrentActiveLevel = _levelEntry;
                 ActivateLevel(_levelEntry);
@@ -32,6 +31,7 @@ namespace Boot
             else
             {
                 ActivateLevel(GameManager.Instance.CurrentActiveLevel);
+                Debug.Log("Active Scene");
             }
             GameManager.Instance.ActiveLevel();
         }

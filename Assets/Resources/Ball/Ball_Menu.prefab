@@ -401,7 +401,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3a763ae7d38f3e94483e6a8600588dd6, type: 2}
+  - {fileID: 2100000, guid: e4cb6f380199dc4448a3ba98db367b06, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -433,13 +433,22 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
-        inSlope: -0.96851
-        outSlope: -0.96851
+        value: 0
+        inSlope: 18.630823
+        outSlope: 18.630823
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.21305841
+        outWeight: 0.28571427
+      - serializedVersion: 3
+        time: 0.092920355
+        value: 0.723342
+        inSlope: 1.2572443
+        outSlope: 1.2572443
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.20487803
       - serializedVersion: 3
         time: 1
         value: 0
@@ -632,6 +641,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -53.593
       objectReference: {fileID: 0}
+    - target: {fileID: 5403807623365691870, guid: f4278050d43b637478e0f04eba4959b7, type: 3}
+      propertyPath: _trailRenderer
+      value: 
+      objectReference: {fileID: 1388860218466084092}
+    - target: {fileID: 5403807623365691870, guid: f4278050d43b637478e0f04eba4959b7, type: 3}
+      propertyPath: _spriteRenderer
+      value: 
+      objectReference: {fileID: 8032971738462915297}
     - target: {fileID: 8728649127158147204, guid: f4278050d43b637478e0f04eba4959b7, type: 3}
       propertyPath: m_Name
       value: Prefabs

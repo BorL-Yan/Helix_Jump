@@ -19,6 +19,7 @@ public class GameManager : SingletonGame<GameManager>
     
     public int CurrentActiveLevel { get; set; }
     public bool OpenNewLevel { get; set; }
+    public bool IsMenuActive { get; set; }
 
     [Inject]
     public void Construct(GameAction action)
@@ -49,9 +50,9 @@ public class GameManager : SingletonGame<GameManager>
         }
     }
 
-    public void ActivateLevelScene()
+    public void ActivateLevelScene(Action callback)
     {
-        _loadingUI.ActivateLevel();
+        _loadingUI.ActivateLevel(callback);
     }
 
     public void ActivateMenuScene()

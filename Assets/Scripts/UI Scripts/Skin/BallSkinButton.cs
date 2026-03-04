@@ -13,17 +13,22 @@ public class BallSkinButton : UIButton
     [SerializeField] private GameObject _buyIcon;
 
     public bool isActive { get; private set; }
+    private Sequence sequence;
     private bool _isSelect;
 
     private void OnEnable()
     {
-        Sequence sequence = DOTween.Sequence();
+        BallAnimation();
+    }
+
+    public void BallAnimation()
+    {
+        sequence.Kill();
+        sequence = DOTween.Sequence();
         transform.localScale = Vector3.one * 0.6f;
         sequence.Append(transform.DOScale(1.2f, 0.2f))
             .Append(transform.DOScale(1, 0.08f));
     }
-    
-    
     protected override void Click()
     {
         if(isActive && !_isSelect) Select();
@@ -49,7 +54,6 @@ public class BallSkinButton : UIButton
         Active(_select);
         _active.SetActive(true);
         GameManager.Instance.Action.OnSelectBallSkin?.Invoke(SkinID);
-        Debug.Log($"Select {gameObject.name}: Skin {SkinID}");
     }
 
     public void Deactivate()

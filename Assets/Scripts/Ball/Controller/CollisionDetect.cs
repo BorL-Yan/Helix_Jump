@@ -18,8 +18,8 @@ namespace Ball.Controller
         private BallFlags _flags;
         private BallConfig _ballConfig;
         private LevelAction _levelAction;
-        private bool _activated;
         private Material _ballMaterial;
+        private bool _activated;
         
         [Inject]
         public void Construct(BallAction ballAction, BallFlags flags, BallConfig ballConfig, LevelAction levelAction)
@@ -33,8 +33,8 @@ namespace Ball.Controller
         private void Start()
         {
             _activated = true;
-            _ballMaterial = _ballConfig.GetMaterial();
-            ComboTrail.Instance.SetMaterial(_ballConfig.GetMaterial());
+            _ballMaterial = _ballConfig.GetMaterial().BallMaterial;
+            // ComboTrail.Instance.SetMaterial(_ballConfig.GetMaterial());
         }
 
         
@@ -178,16 +178,18 @@ namespace Ball.Controller
             _levelAction.OnFinishLevel?.Invoke();
             _ballAction?.Jump();
             
-            //TODO Activate final Effect
+            Debug.Log("Activate");
+            _levelAction.OnFinishEffectActivate?.Invoke(transform.position);
         }
 
         private void MultyplyPlatform(Transform platformTransform)
         {
             _levelAction.OnActivateFinalPointAnimation();
+            _levelAction.OnEndLevel?.Invoke();
             _ballAction.DeactivateGravity?.Invoke();
             _flags.gravity = false;
             
-            //TODO Activate final Effect
+            _levelAction.OnFinishEffectActivate?.Invoke(transform.position);
         }
         
         private void DiactivateCollision()

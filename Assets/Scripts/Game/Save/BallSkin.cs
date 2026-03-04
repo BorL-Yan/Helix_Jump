@@ -6,6 +6,7 @@ public class BallSkin
 {
     public BallSkinType skinType;
     public GameObject skin;
+    public Sprite sprite;
 
     public BallSkin()
     {

@@ -4,9 +4,7 @@ namespace UI_Scripts
     {
         protected override void Click()
         {
-            //Debug.Log($"Click {transform.name}");
-            GameManager.Instance.ActivateLevelScene();
+            GameManager.Instance.ActivateLevelScene(null);
         }
-        
     }
 }

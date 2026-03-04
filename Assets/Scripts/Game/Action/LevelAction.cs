@@ -16,6 +16,7 @@ public class LevelAction
     public Action AddMultiplyCount;
     
     public Func<Vector3> GetFinshPosition;
+    public Action<Vector3> OnFinishEffectActivate;
 
     public Action OnTakeKey;
 }

@@ -17,15 +17,15 @@ public class BallConfig : ScriptableObject
     [field:SerializeField] public float HangGravityMultiplier { get; private set;} = 0.1f;
     
     
-    [SerializeField] private List<Material> _materials;
-    public Material GetMaterial()
+    [SerializeField] private List<BallColor> _materials;
+    public BallColor GetMaterial()
     {
         int level = GameSave.GetSettings().ActiveLevelSkin;
         
-        return _materials[level % _materials.Count];
+        return GetMaterial(level % _materials.Count);
     }
 
-    public Material GetMaterial(int index)
+    private BallColor GetMaterial(int index)
     {
         if (_materials == null || index < 0 || index >= _materials.Count)
         {
@@ -33,10 +33,4 @@ public class BallConfig : ScriptableObject
         }
         return _materials[index];
     }
-
-    public int GetMaterialCount()
-    {
-        return _materials != null ? _materials.Count : 0;
-    }
-    
 }

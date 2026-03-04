@@ -10,7 +10,8 @@ public class SaveDeleteEditor
         var settings = GameSave.GetSettings();
         settings = new GameSettings();
 
-        settings.Coin = 1000;
+        settings.Coin = 100;
+		settings.Level = 1;
         GameSave.SetSettings(settings);
         GameSave.Save();
         

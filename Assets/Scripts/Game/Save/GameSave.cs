@@ -53,6 +53,7 @@ public class GameSettings : ISerializationCallbackReceiver
     public int ActiveLevelSkin = 1;
 
     public int LeaderID = 3000;
+    public int LeaderBoardID = 0;
     public int Coin = 0;
     public int Score = 0;
     public int Key = 0;
@@ -65,16 +66,11 @@ public class GameSettings : ISerializationCallbackReceiver
     public List<LevelData> LevelData = new();
     public Dictionary<BallSkinType, bool> ActiveSkins = new();
 
-    
-    // Эти списки БУДУТ сохранены
     [SerializeField] private List<BallSkinType> _skinKeys = new();
     [SerializeField] private List<bool> _skinValues = new();
 
-    // Перед сохранением перекладываем данные из Dictionary в List
     public void OnBeforeSerialize()
     {
-        Debug.Log("OnBeforeSerialize");
-        
         _skinKeys.Clear();
         _skinValues.Clear();
         foreach (var pair in ActiveSkins)
@@ -84,10 +80,8 @@ public class GameSettings : ISerializationCallbackReceiver
         }
     }
 
-    // После загрузки перекладываем данные из List обратно в Dictionary
     public void OnAfterDeserialize()
     {
-        Debug.Log("OnAfterDeserialize");
         ActiveSkins = new Dictionary<BallSkinType, bool>();
         for (int i = 0; i != Math.Min(_skinKeys.Count, _skinValues.Count); i++)
         {

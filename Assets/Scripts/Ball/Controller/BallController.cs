@@ -9,7 +9,6 @@ public class BallController : IStartable
     private readonly BallFlags _flags;
     private readonly Transform _root;
     
-    
     public BallController(BallFlags flags, Transform root)
     {
         _flags = flags;
