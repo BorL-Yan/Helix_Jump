@@ -15,12 +15,6 @@ namespace Platform.Controllers
             _levelAction = levelAction;
         }
         
-        public void Start()
-        {
-            _effect.Clear();
-        }
-
-
         private void Activate(Vector3 pos)
         {
             _effect.transform.position = pos + Vector3.down*0.1f;
@@ -29,15 +23,14 @@ namespace Platform.Controllers
         }
 
 
-        private void OnEnable()
+        public void OnEnable()
         {
-            Debug.Log("OnEnable");
+            _effect.Clear();
             _levelAction.OnFinishEffectActivate += Activate;
         }
 
         private void OnDisable()
         {
-            Debug.Log("OnDisable");
             _levelAction.OnFinishEffectActivate -= Activate;
         }
     }

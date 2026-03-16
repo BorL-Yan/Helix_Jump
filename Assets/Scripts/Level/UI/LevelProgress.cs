@@ -8,6 +8,7 @@ using VContainer;
 public class LevelProgress : MonoBehaviour
 {
     [SerializeField] private GameObject _progressPanel;
+    [SerializeField] private GameObject _levelPanel;
     
     [SerializeField] private TMP_Text _currentLevel;
     private int currentLevel;
@@ -23,12 +24,14 @@ public class LevelProgress : MonoBehaviour
     private int currentPlatformsCount;
 
     private LevelAction _levelAction;
+    private GameAction _gameAction;
     private Sequence progressSequence;
 
     [Inject]
-    public void Construct(LevelAction levelAction)
+    public void Construct(LevelAction levelAction, GameAction gameAction)
     {
         _levelAction = levelAction;
+        _gameAction = gameAction;
     }
     
     private void Start()
@@ -38,6 +41,12 @@ public class LevelProgress : MonoBehaviour
         point = 0;
         currentPlatformsCount = 0;
         _pointAnimationText.gameObject.SetActive(false);
+
+        if (GameManager.Instance.GameState == GameState.skin)
+        {
+            ActivateSkinPanel(true);
+        }
+        GameManager.Instance.Action.ActivateSkinPanel += ActivateSkinPanel;
     }
 
     public void Activate(int level, int platformscount)
@@ -67,7 +76,7 @@ public class LevelProgress : MonoBehaviour
         point *= value;
         
 
-        DOTween.To(() => _displayScore, x => _displayScore = x, point, 1f)
+        DOTween.To(() => _displayScore, x => _displayScore = x, point, 1.5f)
             .OnUpdate(() =>
             {
                 _pointText.text = NumberFormatter.FormatValue(_displayScore);
@@ -98,11 +107,16 @@ public class LevelProgress : MonoBehaviour
                 _pointAnimationText.gameObject.SetActive(false);
             });
     }
+
+    public void ActivateSkinPanel(bool value)
+    { 
+        _progressPanel.SetActive(!value);
+    }
     
     
     private void Deactivate()
     {
-        _progressPanel.SetActive(false);
+        _levelPanel.SetActive(false);
     }
 
     private void OnEnable()
@@ -115,5 +129,13 @@ public class LevelProgress : MonoBehaviour
     private void OnDisable()
     {
         _levelAction.OnFinishLevel -= Deactivate;
+        _levelAction.OnSetPoint -= SetPoint;
+        _levelAction.OnPointAnimation -= SetPointAnimation;
+    }
+
+    private void OnDestroy()
+    {
+        if(GameManager.Instance!=null)
+            GameManager.Instance.Action.ActivateSkinPanel -= ActivateSkinPanel;
     }
 }

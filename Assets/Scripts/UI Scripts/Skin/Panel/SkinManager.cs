@@ -5,7 +5,6 @@ using com.cyborgAssets.inspectorButtonPro;
 using DG.Tweening;
 using UI_Scripts.Skin;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 using VContainer;
 using Random = UnityEngine.Random;
 
@@ -14,10 +13,25 @@ public abstract class SkinManager : MonoBehaviour
 {
     [SerializeField] protected List<BallSkinButton> _skins;
     [SerializeField] protected BuySkin _buySkin;
-
     private BallSkinType activeSkin;
     private BallSkinButton _activeSkinButton;
-    
+    [SerializeField] private GameObject _newSkin;
+
+
+    private GameAction _gameAction;
+
+    [Inject]
+    public void Construct(GameAction action)
+    {
+        _gameAction = action;
+        _gameAction.OnActivateNewSkin += ActivateNewSkin;
+    }
+
+    private void OnDestroy()
+    { 
+        _gameAction.OnActivateNewSkin -= ActivateNewSkin;
+    }
+
     private void OnEnable()
     {
         LoadActiveSkin();
@@ -95,7 +109,7 @@ public abstract class SkinManager : MonoBehaviour
         return _skins.FindAll(x => x.isActive).Count;
     } 
 
-    [ProButton]
+    //[ProButton]
     public void SelectAnimation(Action callback)
     {
         var deactiveSkins = _skins.Where(item => !item.isActive)
@@ -141,5 +155,19 @@ public abstract class SkinManager : MonoBehaviour
         var skinChilde = gameObject.GetComponentsInChildren<BallSkinButton>();
         _skins = skinChilde.ToList();
     }
-    
+
+    private void ActivateNewSkin(BallSkinType skinType)
+    {
+        foreach (var item in _skins)
+        {
+            if (item.SkinID == skinType)
+            {
+                Debug.Log($"Activate new Skin {skinType}");
+                item.ActivateNewSkin();
+                _newSkin.SetActive(true);
+            }
+        }
+    }
+
+    public void DeactivateNewSkinIcon() => _newSkin.SetActive(false);
 }

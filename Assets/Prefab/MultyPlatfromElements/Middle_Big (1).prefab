@@ -360,6 +360,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2564612781966897058, guid: 2580d0503acfda94b91d5c40fb2e2807, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4951657170704147850}
+    - targetCorrespondingSourceObject: {fileID: -2564612781966897058, guid: 2580d0503acfda94b91d5c40fb2e2807, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3471112028009247985}
   m_SourcePrefab: {fileID: 100100000, guid: 2580d0503acfda94b91d5c40fb2e2807, type: 3}
 --- !u!1 &512589200745461488 stripped
 GameObject:
@@ -378,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5162be5c787417b9b5e15b3d12e3d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Platform.Multy.MultyPlatformActivate
-  _animation: {fileID: 0}
+  _text: {fileID: 5920729027049365351}
 --- !u!4 &889115151751588938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2580d0503acfda94b91d5c40fb2e2807, type: 3}
@@ -411,3 +414,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -961037708000681989, guid: 2580d0503acfda94b91d5c40fb2e2807, type: 3}
+--- !u!114 &3471112028009247985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6319912276530863103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e895ffb94f4362aaa1636c1b62271d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Platform.Multy.MultyPlatformDetect

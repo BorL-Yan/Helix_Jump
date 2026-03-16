@@ -9,7 +9,7 @@ namespace Platform.Multy
     {
         [SerializeField] private List<MultyPlatformActivateList> _activateList;
         
-        [ProButton]
+        [VInspector.Button]
         public void Activate()
         {
             Sequence seq = DOTween.Sequence();
@@ -23,7 +23,7 @@ namespace Platform.Multy
                 .AppendInterval(0.1f);
             }
         }
-        [ProButton]
+        [VInspector.Button]
         public void Deactivate()
         {
             foreach (var platform in _activateList)
@@ -32,7 +32,7 @@ namespace Platform.Multy
 
         private void Start() => Deactivate();
         
-        [ProButton]
+        [VInspector.Button]
         private void Reset()
         {
             UpdatePlatformList();

@@ -16,7 +16,9 @@ public class GameAction
     public Action<SelectingPlatform> MoveToPlatform;
 
     public Action<BallSkinType> OnSelectBallSkin;
-    
-    
-    public Action OnTakeKey;
+    public Action<BallSkinType> OnActivateNewSkin;
+
+
+    public Action<bool> ActivateSkinPanel;
+    public Action<bool> ActivateGlobalPanel;
 }

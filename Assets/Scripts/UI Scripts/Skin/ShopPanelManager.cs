@@ -1,3 +1,4 @@
+using System;
 using UI_Scripts;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class ShopPanelManager : MonoBehaviour
     [SerializeField] private SkinCategoryButton funkyPanel;
     [SerializeField] private SkinCategoryButton epicPanel;
     [SerializeField] private SkinCategoryButton chestPanel;
-
+    
     public void Start()
     {
         SelectCategory(basicPanel);

@@ -12,14 +12,16 @@ public class LevelLifeTimeScope : LifetimeScope
     [SerializeField] private LeaderBoard LeaderBoard;
     [SerializeField] private BestPrize BestPrize;
     [SerializeField] private FinalPanel FinalPanel;
+    [SerializeField] private TakeKeyUI _keyUI;
     
     protected override void Configure(IContainerBuilder builder)
     {
-        builder.RegisterComponent<LoosPanel>(loosPanel);
-        builder.RegisterComponent<LevelProgress>(LevelProgress);
-        builder.RegisterComponent<LeaderBoard>(LeaderBoard);
-        builder.RegisterComponent<BestPrize>(BestPrize);
-        builder.RegisterComponent<FinalPanel>(FinalPanel);
+        builder.RegisterComponent(loosPanel);
+        builder.RegisterComponent(LevelProgress);
+        builder.RegisterComponent(LeaderBoard);
+        builder.RegisterComponent(BestPrize);
+        builder.RegisterComponent(FinalPanel);
+        builder.RegisterComponent(_keyUI);
         
         builder.Register<LevelAction>(Lifetime.Singleton);
 

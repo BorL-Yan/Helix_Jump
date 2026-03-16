@@ -150,6 +150,10 @@ public class LevelGeneratorWindow : EditorWindow
             // 4. Смещаем высоту
             currentY -= levelProfile.distanceBetweenPlatforms;
         }
+        
+        var effect = Resources.Load<GameObject>("Partical/Finish");
+        var instantiatePrefab = (GameObject)PrefabUtility.InstantiatePrefab(effect, parentContainer);
+        
     }
 
     private void ClearLevel()

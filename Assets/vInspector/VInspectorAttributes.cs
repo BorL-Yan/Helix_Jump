@@ -37,7 +37,7 @@ namespace VInspector
     public class ButtonAttribute : Attribute
     {
         public string name = "";
-        public int size = 30;
+        public int size = 20;
         public int space = 0;
         public string color = "Grey";
 

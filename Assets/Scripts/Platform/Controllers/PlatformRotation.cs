@@ -11,6 +11,7 @@ public class PlatformRotation : IStartable, IDisposable
     private readonly LevelAction _levelAction;
     
     private bool _activeRotation = true;
+    private bool _firstInput = false;
     
     [Inject]
     public PlatformRotation(GameAction gameAction, Transform header, BallConfig ballConfig, LevelAction levelAction)
@@ -24,6 +25,11 @@ public class PlatformRotation : IStartable, IDisposable
     public void Rotation(float direction)
     {
         if(!_activeRotation) return;
+        if (!_firstInput)
+        {
+            _firstInput = true;
+            GameManager.Instance.Action.ActivateGlobalPanel(false);
+        }
         
         Vector3 rotation = _header.eulerAngles;
         float targetYAngle = direction * _ballConfig.RotationSpeed;

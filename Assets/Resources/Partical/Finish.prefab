@@ -14748,7 +14748,7 @@ GameObject:
   - component: {fileID: 7273862784884067673}
   - component: {fileID: 2367728420814408702}
   m_Layer: 0
-  m_Name: Finish (5)
+  m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15023,7 +15023,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 0.01
       maxCurve:
         serializedVersion: 2
@@ -19620,7 +19620,7 @@ ParticleSystemRenderer:
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.1
+  m_MaxParticleSize: 0.05
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
@@ -24591,7 +24591,7 @@ GameObject:
   - component: {fileID: 251316513351988880}
   - component: {fileID: 8136257419933225441}
   m_Layer: 0
-  m_Name: Finish (3)
+  m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24620,7 +24620,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8267393354312100540}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 1
   simulationSpeed: 2
   stopAction: 0
   cullingMode: 0
@@ -24695,7 +24695,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -24748,8 +24748,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
-      minScalar: 0.1
+      scalar: 1
+      minScalar: 0.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -24866,7 +24866,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
+      scalar: 0.4
       minScalar: 0.02
       maxCurve:
         serializedVersion: 2
@@ -25330,7 +25330,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.5
+      value: 0.26
       mode: 0
       spread: 0
       speed:

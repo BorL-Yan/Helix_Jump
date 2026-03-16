@@ -11,6 +11,7 @@ public class BallSkinButton : UIButton
     [SerializeField] private GameObject _deactive;
 
     [SerializeField] private GameObject _buyIcon;
+    [SerializeField] private GameObject _newSkin;
 
     public bool isActive { get; private set; }
     private Sequence sequence;
@@ -54,6 +55,13 @@ public class BallSkinButton : UIButton
         Active(_select);
         _active.SetActive(true);
         GameManager.Instance.Action.OnSelectBallSkin?.Invoke(SkinID);
+        if (_newSkin.activeInHierarchy)
+        {
+            _basicSkinManager.DeactivateNewSkinIcon();
+            _newSkin.SetActive(false);
+            GameSave.GetSettings().newSkin = false;
+            GameSave.Save();
+        }
     }
 
     public void Deactivate()
@@ -76,6 +84,11 @@ public class BallSkinButton : UIButton
             _select.SetActive(obj == _select);
         if(_deactive != null)
             _deactive.SetActive(obj == _deactive);
+    }
+
+    public void ActivateNewSkin()
+    {
+        _newSkin.SetActive(true);
     }
     
 }

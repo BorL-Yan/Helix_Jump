@@ -8,6 +8,8 @@ namespace Ball.Controller
     {
         [SerializeField] private SpriteRenderer _effectMat;
         [SerializeField] private ParticleSystem _particleSystem;
+        [SerializeField] private ParticleSystem _bigParticleSystem;
+        
 
         private Color _color;
         [SerializeField] private float _fadeOutDuration;
@@ -30,7 +32,7 @@ namespace Ball.Controller
             _effectMat.color = new Color(0,0,0,0);
         }
 
-        public void GroundedEffect(Transform hit)
+        public void GroundedEffect(Transform hit, bool big)
         {
             transform.SetParent(hit.transform.parent);
 
@@ -39,7 +41,13 @@ namespace Ball.Controller
                 hit.position.y + 0.12f,
                 _ball.position.z);
             _particleSystem.transform.position = transform.position + Vector3.down * 0.2f;
-            
+            if (big)
+            {
+                _bigParticleSystem.Clear();
+                _bigParticleSystem.Play();
+                _bigParticleSystem.transform.position = _particleSystem.transform.position;
+
+            }
             transform.rotation = Quaternion.Euler(new Vector3
                 (90,Random.Range(-180f, 180f),0));
             

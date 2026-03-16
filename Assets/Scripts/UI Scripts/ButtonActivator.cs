@@ -23,6 +23,7 @@ public class ButtonActivator : MonoBehaviour
         normalScale = rect.localScale;
 
         DisableAnimations();
+        Activate();
     }
 
     public void Activate()

@@ -9,8 +9,10 @@ public class MainEntryPoint : MonoBehaviour
     
     private void Awake()
     {
+        
         if (GameManager.Instance == null)
         {
+            GameSave.Init();
             GameManager manager = Resources.Load<GameManager>("Menegers/GameBootstrap");
             Instantiate(manager).Initializ();
             _initilaze = false;
@@ -38,6 +40,7 @@ public class MainEntryPoint : MonoBehaviour
         action?.Invoke(GameSave.GetSettings().Level);
         
         _initilaze = true;
+        GameManager.Instance.GameState = GameState.level;
     }
     
 }

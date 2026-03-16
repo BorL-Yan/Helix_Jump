@@ -20,7 +20,14 @@ namespace Platform.Multy
             foreach (var platform in _platforms)
                 platform.Deactivate();
         }
-        
+        [VInspector.Button]
+        public void ActivateDetect()
+        {
+            foreach (var item in _platforms)
+            {
+                item.ActivateText();
+            }
+        }
         
         private void OnValidate()
         {

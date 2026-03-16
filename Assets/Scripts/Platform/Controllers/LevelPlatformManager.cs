@@ -1,13 +1,14 @@
 using com.cyborgAssets.inspectorButtonPro;
 using Level.Controllers;
+using Platform.Controllers;
+using UnityEditor;
 using UnityEngine;
 
 
 public class LevelPlatformManager : MonoBehaviour
 {
     [field: SerializeField] public int PlatformsCount { get; private set; }
-    private GameObject effect;
-    
+
     private void OnValidate()
     {
         UpdatePlatformCount();
@@ -17,11 +18,7 @@ public class LevelPlatformManager : MonoBehaviour
     private void Reset()
     {
         UpdatePlatformCount();
-        if (effect == null)
-        {
-            effect = Resources.Load<GameObject>("Partical/Finish");
-            Instantiate(effect, transform);
-        }
+        
     }
 
     private void UpdatePlatformCount()

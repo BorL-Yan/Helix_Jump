@@ -263,7 +263,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.20000002, y: 0.19999997, z: 0.19999997}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7582942220706715071}
@@ -315,7 +315,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -23177482, guid: 64d166d1435c781439b82217b867d94b, type: 3}
+  m_Sprite: {fileID: 714813140, guid: 106ee0de01536384785ea797df30f341, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -340,7 +340,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Ball.Controller.BallGroundedEffectMenu
   _effect: {fileID: 8032971738462915297}
   _circle: {fileID: 6527210361180953745}
-  _color: {r: 1, g: 0.031372547, b: 0.1759901, a: 0.4117647}
   _fadeOutDuration: 0.5
   _circleFadeOutDuration: 0.3
 --- !u!1 &5341262793361504663
@@ -641,6 +640,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -53.593
       objectReference: {fileID: 0}
+    - target: {fileID: 4353797793488559821, guid: f4278050d43b637478e0f04eba4959b7, type: 3}
+      propertyPath: _spriteRenderer
+      value: 
+      objectReference: {fileID: 8032971738462915297}
     - target: {fileID: 5403807623365691870, guid: f4278050d43b637478e0f04eba4959b7, type: 3}
       propertyPath: _trailRenderer
       value: 

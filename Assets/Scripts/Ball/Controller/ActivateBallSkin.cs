@@ -12,7 +12,6 @@ namespace Ball.Controller
         private void Awake()
         {
             SelectBallSkin();
-            _spriteRenderer = GetComponent<ChangeBallColor>()._spriteRenderer;
         }
 
         private void SelectBallSkin()
@@ -48,6 +47,7 @@ namespace Ball.Controller
             var skin = _ballSkins.Find(x => x.skinType == skinType);
             _activeSkin.SetActive(false);
             _activeSkin = skin.skin;
+            _spriteRenderer.sprite = skin.sprite;
             _activeSkin.SetActive(true);
         }
         

@@ -1,7 +1,6 @@
 using Ball.Configuration;
 using Level.Controllers;
-using Level.Manager;
-using UnityEditor;
+using Platform.Multy;
 using UnityEngine;
 using VContainer;
 
@@ -34,7 +33,7 @@ namespace Ball.Controller
         {
             _activated = true;
             _ballMaterial = _ballConfig.GetMaterial().BallMaterial;
-            // ComboTrail.Instance.SetMaterial(_ballConfig.GetMaterial());
+            ComboTrail.Instance.SetMaterial(_ballMaterial);
         }
 
         
@@ -74,7 +73,7 @@ namespace Ball.Controller
                 }
                 case "MultiplyEmptyPlatform":
                 {
-                    _levelAction.AddMultiplyCount?.Invoke();
+                    MultiplyEmptyPlatform(collider.transform);
                     break;
                 }
                 case "MultiplyFinishPlatform":
@@ -89,12 +88,19 @@ namespace Ball.Controller
                     TakeKey();
                     break;
                 }
+                case "BreakPlatformObject":
+                {
+                    collider.gameObject.SetActive(false);
+                    _ballAction.ActivateBreakPlatform(collider.transform.position);
+                    break;
+                }
                 
             }
         }
 
         private void Platform(Transform platformPos)
         {
+            bool big = false;
             if (_flags.currentPlatformBreak >= _ballConfig.MaxPlatformBreak)
             {
                 RaycastHit[] results = new RaycastHit[5];
@@ -110,6 +116,7 @@ namespace Ball.Controller
                             platform.ActivateBoom(_ballMaterial);
                             _levelAction.OnSetPoint?.Invoke(_flags.currentPlatformBreak);
                             _levelAction.OnPointAnimation?.Invoke(_flags.currentPlatformBreak);
+                            big = true;
                         }
                     }
                 }
@@ -117,9 +124,14 @@ namespace Ball.Controller
             
             _flags.isGround = true;
             _ballAction?.Jump();
-            BallGroundedEffect.Instance.GroundedEffect(platformPos);
+            BallGroundedEffect.Instance.GroundedEffect(platformPos,big);
 
             ComboTrail.Instance.Deactivate();
+            if (_flags.activeEffect)
+            {
+                _flags.activeEffect = false;
+                _ballAction.ActivateCombo?.Invoke(false);
+            }
             _flags.currentPlatformBreak = 0;
         }
 
@@ -132,7 +144,25 @@ namespace Ball.Controller
             if(_flags.currentPlatformBreak >= _ballConfig.MaxPlatformBreak - 1)
             {
                 ComboTrail.Instance.Activate();
+                if (!_flags.activeEffect)
+                {
+                    _flags.activeEffect = true;
+                    _ballAction.ActivateCombo?.Invoke(true);
+                }
             }
+            
+            if (_flags.currentPlatformBreak > 6)
+            {
+                // TODO Activate new Star skin, 
+                var settings = GameSave.GetSettings();
+                if (!settings.ActiveSkins.TryGetValue(BallSkinType.Star, out var value))
+                {
+                    GameManager.Instance.Action.OnActivateNewSkin?.Invoke(BallSkinType.Star);
+                    settings.ActiveSkins.TryAdd(BallSkinType.Star, true);
+                    GameSave.SetSettings(settings);
+                }
+            }
+            
             _levelAction.OnSetPoint?.Invoke(_flags.currentPlatformBreak);
         }
 
@@ -167,19 +197,24 @@ namespace Ball.Controller
 
         private void TakeKey()
         {
-            _levelAction.OnTakeKey?.Invoke();
+            _levelAction.OnTakeKey();
+            Debug.Log("Take Key");
+            
         }
         
         private void FinishPlatform(Transform platformTransform)
         {
             _ballAction?.Jump();
-            BallGroundedEffect.Instance.GroundedEffect(platformTransform);
+            BallGroundedEffect.Instance.GroundedEffect(platformTransform, false);
             ComboTrail.Instance.Deactivate();
+            _ballAction.ActivateCombo?.Invoke(false);
             _levelAction.OnFinishLevel?.Invoke();
             _ballAction?.Jump();
             
-            Debug.Log("Activate");
             _levelAction.OnFinishEffectActivate?.Invoke(transform.position);
+            _flags.currentPlatformBreak = 0;
+            _flags.activeEffect = false;
+
         }
 
         private void MultyplyPlatform(Transform platformTransform)
@@ -189,7 +224,23 @@ namespace Ball.Controller
             _ballAction.DeactivateGravity?.Invoke();
             _flags.gravity = false;
             
+            _ballAction.ActivateCombo?.Invoke(false);
+            
             _levelAction.OnFinishEffectActivate?.Invoke(transform.position);
+            Debug.Log(platformTransform.name);
+            platformTransform.GetComponent<MultyPlatformDetect>().Activate();
+
+        }
+
+        private void MultiplyEmptyPlatform(Transform platformTransform)
+        {
+            _levelAction.AddMultiplyCount?.Invoke();
+            _flags.currentPlatformBreak++;
+            if (_flags.currentPlatformBreak >= _ballConfig.MaxPlatformBreak - 1 && !_flags.activeEffect)
+            {
+                _flags.activeEffect = true;
+                _ballAction.ActivateCombo?.Invoke(true);
+            }
         }
         
         private void DiactivateCollision()

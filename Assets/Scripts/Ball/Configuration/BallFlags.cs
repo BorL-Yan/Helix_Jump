@@ -6,5 +6,7 @@ namespace Ball.Configuration
         public int currentPlatformBreak;
         public int multyplyCount  = 2;
         public bool gravity;
+
+        public bool activeEffect;
     }
 }

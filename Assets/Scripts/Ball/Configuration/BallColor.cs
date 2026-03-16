@@ -5,6 +5,5 @@ public class BallColor : ScriptableObject
 {
     [field: SerializeField] public Material BallMaterial { get; private set; }
     [field: SerializeField] public Material ParticleMaterial { get; private set; }
-    [field: SerializeField] public Gradient Gradient { get; private set; }
     [field: SerializeField] public Color Color { get; private set; }
 }

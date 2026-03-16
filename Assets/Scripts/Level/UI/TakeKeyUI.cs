@@ -21,6 +21,7 @@ namespace Level
         public void Construct(LevelAction levelAction)
         {
             _levelAction = levelAction;
+            _levelAction.OnTakeKey += TakeKey;
         }
 
 
@@ -68,14 +69,15 @@ namespace Level
             GameSave.Save();
         }
 
-        private void OnEnable()
-        {
-            _levelAction.OnTakeKey += TakeKey;
-        }
+        // private void OnEnable()
+        // {
+        //     _levelAction.OnTakeKey += TakeKey;
+        // }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
-            _levelAction.OnTakeKey -= TakeKey;
+            if(_levelAction!= null)
+                _levelAction.OnTakeKey -= TakeKey;
         }
     }
 }

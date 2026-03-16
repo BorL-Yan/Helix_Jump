@@ -5,8 +5,6 @@ public class BallMaterial : MonoBehaviour
 {
     [SerializeField] private MeshRenderer _meshRenderer;
     
-    
-    
     public void SetMaterial(Material newMaterial)
     {
         _meshRenderer.material = newMaterial;

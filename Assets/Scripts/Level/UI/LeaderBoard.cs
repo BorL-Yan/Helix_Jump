@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using com.cyborgAssets.inspectorButtonPro;
 using DG.Tweening;
 using TMPro;
 using UI_Scripts.Leaderboard;
 using UnityEngine;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Level
 {
@@ -16,38 +16,62 @@ namespace Level
         [SerializeField] private GameObject _panel;
         [SerializeField] private TMP_Text _totalScore;
 
+        [SerializeField] private GameObject _bronzePanel;
+        [SerializeField] private GameObject _silverPanel;
+        
         [SerializeField] private UIButton _closeButton;
-
+        
+        
         [SerializeField] private List<LeaderboardID> _boardID;
         [SerializeField] private LeaderboardID _playerID;
         
-        [SerializeField] private GameObject _leaderboardPanel;
+        [SerializeField] private Transform _leaderboardPanel;
         [SerializeField] private GameObject _emptyPanel;
 
-        [SerializeField] private RectTransform _up;
-        [SerializeField] private RectTransform _end;
-        [SerializeField] private RectTransform _down;
+        [SerializeField] private Transform _up;
+        [SerializeField] private Transform _end;
+        [SerializeField] private Transform _down;
 
+        [SerializeField] private Transform _finishBoard;
+        
+        [SerializeField] private Transform _middle;
+        [SerializeField] private Transform _finishPlayer;
 
         [SerializeField] private RectTransform _leftRightIcon;
+
+        [SerializeField] private ParticleSystem _particle;
          
         private Action _callback;
 
         private void Start()
         {
             _panel.SetActive(false);
+            _particle.Clear();
         }
 
         public void Activate(Action callback)
         {
             _callback = callback;
             _panel.SetActive(true);
+            ActivateRankedPanel();
         }
 
-        [ProButton]
+        private void ActivateRankedPanel()
+        {
+            int rankedID = GameSave.GetSettings().RankedID;
+
+            _bronzePanel.SetActive(rankedID == 0);
+            _silverPanel.SetActive(rankedID == 1);
+        }
+        
+        [VInspector.Button]
         public void SetScore(int score)
         {
             _panel.SetActive(true);
+
+            _particle.Clear();
+            _particle.Play();
+            
             _closeButton.gameObject.SetActive(false);
             int currentScore = GameSave.GetSettings().Score;
 
@@ -55,16 +79,16 @@ namespace Level
             
             int point = score +  currentScore;
 
-            Sequence sequence = DOTween.Sequence();
-
             _playerID.score.text = NumberFormatter.FormatValue(currentScore);
             _playerID.id.text = GameSave.GetSettings().LeaderID.ToString();
+            
             UpdateBoardTexts(GameSave.GetSettings().LeaderID, currentScore, 3);
-            sequence.AppendInterval(1f)
+            
+            Sequence sequence = DOTween.Sequence();
+            sequence.AppendInterval(0.1f)
                 .AppendCallback(() =>
                 {
                     ActivateBoardAnimation(point);
-                    //TODO Effect
                 });
             sequence.Append(DOTween.To(() => currentScore, x => currentScore = x, point, 1f)
                 .OnUpdate(() =>
@@ -83,10 +107,23 @@ namespace Level
             // 1. Инициализация данных
             var settings = GameSave.GetSettings();
             int startID = settings.LeaderID;
-            int targetID = (int)MathF.Max( (startID - Random.Range(80, 140)), 1);
-            int playerIDPos = 3;
+            int targetID = (int)(startID - Random.Range(400, 1000));
 
+            float endPosBoard = _end.position.y;
+            float endPosPlayer = _middle.position.y;
+            _leaderboardPanel.transform.position = _end.position;
+            _playerID.transform.position = _middle.position;
             
+            
+            if (targetID <= 1)
+            {
+                targetID = 1;
+                endPosBoard = _finishBoard.position.y;
+                endPosPlayer = _finishPlayer.position.y;
+            }
+            int playerIDPos = 4;
+
+         
             // Создаем одну главную последовательность для синхронизации
             Sequence masterSeq = DOTween.Sequence();
 
@@ -96,11 +133,11 @@ namespace Level
             
             Sequence iconSeq = DOTween.Sequence();
             iconSeq.Append(_leftRightIcon.DOSizeDelta(initialSize + new Vector2(100, 0), 0.3f))
-                .Append(_leftRightIcon.DOSizeDelta(initialSize, 0.2f))
+                .Append(_leftRightIcon.DOSizeDelta(initialSize, 0.4f))
                 .SetLoops(3, LoopType.Restart)
                 .OnComplete(() =>
                    {
-                       _leftRightIcon.DOSizeDelta(initialSize - new Vector2(200, 100), 0.05f).OnComplete(() =>
+                       _leftRightIcon.DOSizeDelta(initialSize - new Vector2(200, 100), 0.1f).OnComplete(() =>
                        {
                            _leftRightIcon.gameObject.SetActive(false);
                        });
@@ -108,14 +145,16 @@ namespace Level
 
             // 3. Анимация игрока (Масштаб + Смена ID)
             int tempID = startID;
-            masterSeq.Append(_playerID.transform.DOScale(1.1f, 0.3f));
-            
+            //masterSeq.Append(_playerID.transform.DOScale(1.2f, 0.3f));
+            _playerID.transform.localScale = Vector3.one * 1.1f;
             // Анимируем изменение ID игрока и ОСТАЛЬНЫХ строк таблицы одновременно
             masterSeq.Append(DOTween.To(() => tempID, x => tempID = x, targetID, 1.5f)
-                .OnUpdate(() =>
-                {
-                    _playerID.id.text = tempID.ToString();
-                }));
+                    .OnUpdate(() =>
+                    {
+                        _playerID.id.text = "#" + tempID.ToString();
+                    }))
+                .Join(_playerID.transform.DOMoveY(endPosPlayer, 1.5f))
+                .Join(_leftRightIcon.transform.DOMoveY(endPosPlayer, 1.5f));
 
             Sequence boardSeq = DOTween.Sequence();
             _emptyPanel.SetActive(false);
@@ -130,18 +169,29 @@ namespace Level
                 })
                 .Append(_leaderboardPanel.transform.DOMoveY(_down.position.y, 0.5f).SetEase(Ease.Linear))
                 .AppendCallback(() => _leaderboardPanel.transform.position = _up.position)
+                .Append(_leaderboardPanel.transform.DOMoveY(_down.position.y, 0.5f).SetEase(Ease.Linear))
+                .AppendCallback(() => _leaderboardPanel.transform.position = _up.position)
                 .AppendCallback(() =>
                 {
-                    // Финальное обновление значений на итоговые
+                    _particle.Clear();
+                    _particle.Play();
+                    _particle.transform.position = _playerID.transform.position;
                     _emptyPanel.SetActive(true);
                 })
-                .Append(_leaderboardPanel.transform.DOMoveY(_end.position.y, 0.5f))
+                .Append(_leaderboardPanel.transform.DOMoveY(endPosBoard, 0.5f))
+                //.Append(_playerID.transform.DOScale(1f, 0.3f))
                 .AppendInterval(1f)
                 .AppendCallback(() =>
                 {
                     _closeButton.gameObject.SetActive(true);
                 });
+            if (targetID == 1)
+            {
+                settings.RankedID++;
+                
+            }
             settings.LeaderID = targetID;
+            
             GameSave.SetSettings(settings);
             GameSave.Save();
         }
@@ -153,10 +203,14 @@ namespace Level
             {
                 int offset = playerPos - i;
                 if(offset <= 0) offset--;
-                _boardID[i].id.text = (centerID - offset).ToString();
+                _boardID[i].id.text = "#"+(centerID - offset).ToString();
                 _boardID[i].score.text = NumberFormatter.FormatValue(baseScore + offset * 2);
-                
             }
+        }
+
+        private void ActivateRankedUpgrade()
+        {
+            
         }
                 
         private void Close()
@@ -176,7 +230,7 @@ namespace Level
         }
         
         
-        [ProButton]
+        [VInspector.Button]
         public void LeadorBoardSeter()
         {
             _boardID = GetComponentsInChildren<LeaderboardID>().ToList();

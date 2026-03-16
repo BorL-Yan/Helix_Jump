@@ -14,6 +14,7 @@ TagManager:
   - MultiplyEmptyPlatform
   - MultiplyFinishPlatform
   - Key
+  - BreakPlatformObject
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using VContainer;
 
@@ -11,6 +10,7 @@ namespace Ball.Controller
         public  SpriteRenderer _spriteRenderer;
         [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private ParticleSystem _jumpParticle;
+        [SerializeField] private ParticleSystem _bigJumpParticle;
 
         private BallConfig _config;
         private ParticleSystemRenderer _particleRenderer;
@@ -34,7 +34,6 @@ namespace Ball.Controller
 
             if (_trailRenderer != null)
             {
-                _trailRenderer.colorGradient = ballColor.Gradient;
                 _trailRenderer.material = ballColor.ParticleMaterial;
             }
             if (_spriteRenderer != null) _spriteRenderer.color = ballColor.Color;
@@ -44,6 +43,8 @@ namespace Ball.Controller
             {
                 var main = _jumpParticle.main;
                 main.startColor = new ParticleSystem.MinMaxGradient(ballColor.Color);
+                var gibmain = _bigJumpParticle.main;
+                gibmain.startColor = new ParticleSystem.MinMaxGradient(ballColor.Color);
             }
 
         }

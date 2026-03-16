@@ -92,22 +92,23 @@ MonoBehaviour:
   _ballSkins:
   - skinType: 5
     skin: {fileID: 6362061878023752117}
-    sprite: {fileID: 0}
+    sprite: {fileID: 2079066302, guid: 106ee0de01536384785ea797df30f341, type: 3}
   - skinType: 1
     skin: {fileID: 8583531167442728031}
-    sprite: {fileID: 0}
+    sprite: {fileID: -639736308, guid: 106ee0de01536384785ea797df30f341, type: 3}
   - skinType: 4
     skin: {fileID: 3761039864114316310}
-    sprite: {fileID: 0}
+    sprite: {fileID: 1659480653, guid: 106ee0de01536384785ea797df30f341, type: 3}
   - skinType: 2
     skin: {fileID: 6717775628341328845}
-    sprite: {fileID: 0}
+    sprite: {fileID: 714813140, guid: 106ee0de01536384785ea797df30f341, type: 3}
   - skinType: 3
     skin: {fileID: 1386455468123489014}
-    sprite: {fileID: 0}
+    sprite: {fileID: -1279838731, guid: 106ee0de01536384785ea797df30f341, type: 3}
   - skinType: 6
     skin: {fileID: 3820184090778690499}
-    sprite: {fileID: 0}
+    sprite: {fileID: 1659480653, guid: 106ee0de01536384785ea797df30f341, type: 3}
+  _spriteRenderer: {fileID: 0}
 --- !u!114 &5403807623365691870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +126,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 0}
   _particleSystem: {fileID: 0}
   _jumpParticle: {fileID: 0}
+  _bigJumpParticle: {fileID: 0}
 --- !u!1001 &2304932849514135463
 PrefabInstance:
   m_ObjectHideFlags: 0

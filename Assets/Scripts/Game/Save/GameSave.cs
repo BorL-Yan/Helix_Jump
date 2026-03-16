@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.Serialization;
 
 
 public static class GameSave
@@ -53,10 +54,12 @@ public class GameSettings : ISerializationCallbackReceiver
     public int ActiveLevelSkin = 1;
 
     public int LeaderID = 3000;
-    public int LeaderBoardID = 0;
+    public int RankedID = 0;
     public int Coin = 0;
     public int Score = 0;
     public int Key = 0;
+
+    public bool newSkin = false;
     
     public bool Vibration = true;
     public bool SFX = true;
@@ -101,6 +104,7 @@ public class GameSettings : ISerializationCallbackReceiver
     }
     
 }
+
 
 [Serializable]
 public class LevelData

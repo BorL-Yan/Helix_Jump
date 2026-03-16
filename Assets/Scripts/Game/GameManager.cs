@@ -15,9 +15,11 @@ public class GameManager : SingletonGame<GameManager>
     public bool Inited { get; private set; }
     
     public GameAction Action { get; private set; }
-    
-    
-    public int CurrentActiveLevel { get; set; }
+
+    public GameState GameState { get; set; }
+
+
+    public int CurrentActiveLevel { get; set; } = 1;
     public bool OpenNewLevel { get; set; }
     public bool IsMenuActive { get; set; }
 
@@ -34,7 +36,6 @@ public class GameManager : SingletonGame<GameManager>
         if(Inited) return;
         Inited = true;
         
-        GameSave.Init();
         GameObject prefab = Resources.Load<GameObject>("Ball/Ball_Menu");
     
         if(prefab != null)
@@ -47,6 +48,8 @@ public class GameManager : SingletonGame<GameManager>
             {
                 _ball.transform.SetParent(transform, false);
             }
+
+            GameState = GameState.main;
         }
     }
 
@@ -74,4 +77,11 @@ public class GameManager : SingletonGame<GameManager>
         _ball.SetActive(true);
     }
     
+}
+
+public enum GameState
+{
+    main,
+    level,
+    skin,
 }
