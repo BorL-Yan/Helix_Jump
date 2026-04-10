@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(RectTransform))]
 public class ButtonActivator : MonoBehaviour
@@ -12,9 +13,14 @@ public class ButtonActivator : MonoBehaviour
     [SerializeField] private float activeScale = 1.2f;
     [SerializeField] private float scaleDuration = 0.25f;
 
+    [SerializeField] private int RankedID;
+    
     private RectTransform rect;
     private Vector3 normalScale;
 
+    [SerializeField] private Image _spriteRenderer;
+    [SerializeField] private Sprite _active;
+    
     public bool IsActive { get; private set; }
 
     private void Awake()
@@ -31,10 +37,24 @@ public class ButtonActivator : MonoBehaviour
         if (IsActive) return;
         IsActive = true;
 
-        EnableAnimations();
+        int currentRankedID = GameSave.GetSettings().RankedID;
 
-        rect.DOScale(activeScale, scaleDuration)
-            .SetEase(Ease.OutBack);
+        if (currentRankedID - 1 == RankedID)
+        {
+            _spriteRenderer.sprite = _active;
+        }
+        
+        if (currentRankedID == RankedID)
+        {
+            EnableAnimations();
+            rect.DOScale(activeScale, scaleDuration)
+                .SetEase(Ease.OutBack);
+        }
+        else
+        {
+            Deactivate();
+        }
+
     }
 
     public void Deactivate()
@@ -52,21 +72,33 @@ public class ButtonActivator : MonoBehaviour
     {
         foreach (var pulse in pulseAnimations)
             if (pulse != null)
+            {
                 pulse.enabled = true;
+                pulse.gameObject.SetActive(true);
+            }
 
         foreach (var rotate in rotateAnimations)
             if (rotate != null)
+            {
                 rotate.enabled = true;
+                rotate.gameObject.SetActive(true);
+            }
     }
 
     private void DisableAnimations()
     {
         foreach (var pulse in pulseAnimations)
             if (pulse != null)
+            {
                 pulse.enabled = false;
+                pulse.gameObject.SetActive(false);
+            }
 
         foreach (var rotate in rotateAnimations)
             if (rotate != null)
+            {
                 rotate.enabled = false;
+                rotate.gameObject.SetActive(false);
+            }
     }
 }

@@ -25,7 +25,7 @@ namespace UI_Scripts
             base.Apply();
             if (mainAudioMixer != null)
             {
-                mainAudioMixer.SetFloat("SFX Volume", isOn ? 0f : -80f);
+                mainAudioMixer.SetFloat("SFX", isOn ? 0f : -80f);
             }
         }
     }

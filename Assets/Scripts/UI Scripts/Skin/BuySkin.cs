@@ -14,6 +14,9 @@ namespace UI_Scripts.Skin
         private int currentPrice;
         private bool activateBuy;
 
+        [SerializeField] private GameObject[] _gameObjects;
+        [SerializeField] private CanvasGroup _canvasGroup;
+        
         private Image _raycastImage;
         
         private void Awake()
@@ -30,10 +33,12 @@ namespace UI_Scripts.Skin
 
         public void UpdatePrice()
         {
-            currentPrice = 100 * ((_skinManager.GetActiveSkinCount() - 1) * 4);
+            currentPrice = 100 * ((_skinManager.GetActiveSkinCount() - 1) * 6);
             currentPrice = Mathf.Max(100, currentPrice);
             
             _price.text = currentPrice.ToString();
+            
+            
         }
         
         protected override void Click()
@@ -55,6 +60,14 @@ namespace UI_Scripts.Skin
                 UpdatePrice();
                 _closeIcon.SetActive(false);
                 _raycastImage.enabled = true;
+                foreach (var obj in _gameObjects)
+                {
+                    obj.transform.localScale = Vector3.zero;
+                    obj.transform.DOScale(1, 0.5f);
+                }
+
+                _canvasGroup.alpha = 0;
+                _canvasGroup.DOFade(1, 0.5f);
             });
             _closeIcon.SetActive(true);
 

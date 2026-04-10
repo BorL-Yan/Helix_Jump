@@ -14,7 +14,7 @@ namespace Level.Controllers
             foreach (var item in _platforms)
             {
                 item.BoomMethod();
-                item.SetMaterial(material);
+                if(material != null )item.SetMaterial(material);
             }
         }
         
@@ -33,6 +33,10 @@ namespace Level.Controllers
         {
             var children = GetComponentsInChildren<PlatformBoom>(true);
             _platforms = new List<PlatformBoom>(children);
+            foreach (var VARIABLE in children)
+            {
+                
+            }
         }
         
     }

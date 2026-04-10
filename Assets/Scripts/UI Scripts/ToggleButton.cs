@@ -23,6 +23,7 @@ public abstract class ToggleButton : UIButton, IToggle, ISettings
         _closeIcon.SetActive(!isOn);
         Apply();
         SaveSettings();
+
     }
 
     protected virtual void Apply()
@@ -32,4 +33,9 @@ public abstract class ToggleButton : UIButton, IToggle, ISettings
     
     public abstract void SaveSettings();
     public abstract void LoadSettings();
+
+    public void OnEnable()
+    {
+        Apply();
+    }
 }

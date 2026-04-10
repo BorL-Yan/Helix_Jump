@@ -461,7 +461,7 @@ TextureImporter:
         width: 231
         height: 251
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -470,6 +470,94 @@ TextureImporter:
       bones: []
       spriteID: 468c35ce908d16c4a819ef3dda75b7ab
       internalID: 1698485242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranks_16
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 84
+        width: 103
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82a5b422f5cd3e94b914b756e193f112
+      internalID: 576589230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranks_17
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 76
+        width: 103
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8720cae47907434478be19da7cc5a977
+      internalID: 1778329523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranks_18
+      rect:
+        serializedVersion: 2
+        x: 2060
+        y: 1066
+        width: 483
+        height: 597
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8f38a96b26e50f4bb5b841a6927a221
+      internalID: 479211713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ranks_19
+      rect:
+        serializedVersion: 2
+        x: 2066
+        y: 451
+        width: 483
+        height: 597
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 954689f43418aba4d9bb2ec536db2458
+      internalID: -1146508268
       vertices: []
       indices: 
       edges: []
@@ -498,6 +586,10 @@ TextureImporter:
       ranks_13: -261984823
       ranks_14: -2104618059
       ranks_15: 1698485242
+      ranks_16: 576589230
+      ranks_17: 1778329523
+      ranks_18: 479211713
+      ranks_19: -1146508268
       ranks_2: -986712255
       ranks_3: -1271190085
       ranks_4: -1802628899

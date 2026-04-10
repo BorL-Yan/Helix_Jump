@@ -13,7 +13,7 @@ public class MainEntryPoint : MonoBehaviour
         if (GameManager.Instance == null)
         {
             GameSave.Init();
-            GameManager manager = Resources.Load<GameManager>("Menegers/GameBootstrap");
+            GameManager manager = Resources.Load<GameManager>("Managers/GameBootstrap");
             Instantiate(manager).Initializ();
             _initilaze = false;
         }

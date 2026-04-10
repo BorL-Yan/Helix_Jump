@@ -55,8 +55,8 @@ namespace UI_Scripts
                 GameManager.Instance.ActivateLevelScene(() =>
                 {
                     GameManager.Instance.GameState = GameState.skin;
-                    panelManager.OpenPanel(skinPanel);
                     GameManager.Instance.Action.ActivateSkinPanel?.Invoke(true);
+                    Invoke("ActivateSKinPanel", 0.1f);
                 });
             }
             else
@@ -64,6 +64,11 @@ namespace UI_Scripts
                 panelManager.OpenPanel(skinPanel);
                 GameManager.Instance.GameState = GameState.skin;
             }
+        }
+
+        private void ActivateSKinPanel()
+        {
+            panelManager.OpenPanel(skinPanel);
         }
     }
 }

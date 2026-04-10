@@ -25,6 +25,7 @@ namespace Ball.Menu
                 case "Platform":
                 {
                     _ballController.Jump();
+                    SoundManager.Instance.Play(SoundType.Jump, 0.3f);
                     break;
                 }
             }

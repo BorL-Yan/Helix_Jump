@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acff9007d24847578f14e78bd538159b, type: 3}
+  m_Name: 3_Orange
+  m_EditorClassIdentifier: Assembly-CSharp::Platform.Configuration.LevelColor
+  <BackGround>k__BackingField: {fileID: 1293510084, guid: ba6221d96d2cd6f4ca07b67976882446, type: 3}
+  <Platform>k__BackingField: {fileID: 2100000, guid: d13e2c6fbcabe124a96b4f8a57902497, type: 2}
+  <Cilinder>k__BackingField: {fileID: 2100000, guid: 7129f4422253aaa429dde1c10dec6106, type: 2}

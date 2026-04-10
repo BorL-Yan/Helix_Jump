@@ -13,6 +13,8 @@ namespace Level
 {
     public class LeaderBoard : MonoBehaviour
     {
+        [SerializeField] private GameObject _mainPanel;
+        
         [SerializeField] private GameObject _panel;
         [SerializeField] private TMP_Text _totalScore;
 
@@ -40,12 +42,17 @@ namespace Level
         [SerializeField] private RectTransform _leftRightIcon;
 
         [SerializeField] private ParticleSystem _particle;
-         
+
+        [SerializeField] private RankUpController _rankUp;
+        [SerializeField] private OpenKeys _openKeys;
+        [SerializeField] private ChampionLeagueUI _championLeagueUI;
         private Action _callback;
 
         private void Start()
         {
             _panel.SetActive(false);
+            _rankUp.gameObject.SetActive(false);
+            _championLeagueUI.gameObject.SetActive(false);
             _particle.Clear();
         }
 
@@ -104,10 +111,9 @@ namespace Level
 
         private void ActivateBoardAnimation(int endScore)
         {
-            // 1. Инициализация данных
             var settings = GameSave.GetSettings();
             int startID = settings.LeaderID;
-            int targetID = (int)(startID - Random.Range(400, 1000));
+            int targetID = startID - (int)(Random.Range(8000, 13000) / (settings.RankedID * 20 + 1));
 
             float endPosBoard = _end.position.y;
             float endPosPlayer = _middle.position.y;
@@ -124,10 +130,8 @@ namespace Level
             int playerIDPos = 4;
 
          
-            // Создаем одну главную последовательность для синхронизации
             Sequence masterSeq = DOTween.Sequence();
 
-            // 2. Анимация иконки (параллельно основной логике)
             _leftRightIcon.gameObject.SetActive(true);
             Vector2 initialSize = _leftRightIcon.sizeDelta;
             
@@ -143,11 +147,9 @@ namespace Level
                        });
                    });
 
-            // 3. Анимация игрока (Масштаб + Смена ID)
             int tempID = startID;
             //masterSeq.Append(_playerID.transform.DOScale(1.2f, 0.3f));
             _playerID.transform.localScale = Vector3.one * 1.1f;
-            // Анимируем изменение ID игрока и ОСТАЛЬНЫХ строк таблицы одновременно
             masterSeq.Append(DOTween.To(() => tempID, x => tempID = x, targetID, 1.5f)
                     .OnUpdate(() =>
                     {
@@ -159,7 +161,6 @@ namespace Level
             Sequence boardSeq = DOTween.Sequence();
             _emptyPanel.SetActive(false);
             boardSeq.Append(_leaderboardPanel.transform.DOMoveY(_down.position.y, 0.2f).SetEase(Ease.Linear))
-                // Симуляция "тряски" или прокрутки
                 .AppendCallback(() => _leaderboardPanel.transform.position = _up.position)
                 .Append(_leaderboardPanel.transform.DOMoveY(_down.position.y, 0.5f).SetEase(Ease.Linear))
                 .AppendCallback(() =>
@@ -184,19 +185,24 @@ namespace Level
                 .AppendCallback(() =>
                 {
                     _closeButton.gameObject.SetActive(true);
+                    if (targetID == 1)
+                    {
+                        settings.RankedID++;
+
+                        settings.LeaderID = Random.Range(4500, 3500);
+                        
+                        ActivateRankedUpgrade();
+                    }
+                    else
+                    {
+                        settings.LeaderID = targetID;
+                    }
                 });
-            if (targetID == 1)
-            {
-                settings.RankedID++;
-                
-            }
-            settings.LeaderID = targetID;
             
             GameSave.SetSettings(settings);
             GameSave.Save();
         }
 
-        // Выносим обновление текстов в отдельный метод, чтобы не дублировать код
         private void UpdateBoardTexts(int centerID, int baseScore, int playerPos)
         {
             for (int i = 0; i < _boardID.Count; i++)
@@ -207,10 +213,28 @@ namespace Level
                 _boardID[i].score.text = NumberFormatter.FormatValue(baseScore + offset * 2);
             }
         }
-
-        private void ActivateRankedUpgrade()
+        
+        [VInspector.Button]
+        public void ActivateRankedUpgrade()
         {
-            
+            OpenKeys keys = Instantiate(_openKeys).GetComponent<OpenKeys>();
+            keys.transform.position = Vector3.zero;
+            _mainPanel.SetActive(false);
+            keys.Activate(() =>
+            {
+                _mainPanel.SetActive(true);
+                keys.gameObject.SetActive(false);
+                _rankUp.Activate(() =>
+                {
+                    _rankUp.gameObject.SetActive(false);
+                    SoundManager.Instance.Play(SoundType.RankedUp_Particle);
+                    _championLeagueUI.Activate(()=>
+                    {
+                        _championLeagueUI.gameObject.SetActive(false);
+                        Close();
+                    }); 
+                });
+            });
         }
                 
         private void Close()

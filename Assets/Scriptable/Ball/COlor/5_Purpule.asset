@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3bf3f0289c94e39940110957f247ab3, type: 3}
+  m_Name: 5_Purpule
+  m_EditorClassIdentifier: Assembly-CSharp::BallColor
+  <BallMaterial>k__BackingField: {fileID: 2100000, guid: 247f2a5d4b16453489e1cc3d956bdae7, type: 2}
+  <ParticleMaterial>k__BackingField: {fileID: 2100000, guid: a079bf71dc32dcc4aa337871cdc3346b, type: 2}
+  <Color>k__BackingField: {r: 0.57368803, g: 0, b: 1, a: 1}

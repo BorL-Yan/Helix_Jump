@@ -1,4 +1,3 @@
-using com.cyborgAssets.inspectorButtonPro;
 using UnityEditor;
 using UnityEngine;
 using VContainer;
@@ -16,6 +15,7 @@ namespace Platform.Controllers
         [SerializeField] private int _keyCount;
         [SerializeField] private int _platformContinue;
 
+        [SerializeField] private GameObject _boostParent;
         [SerializeField] private GameObject _boostPrefab;
         [SerializeField] private int _platformContinueBoost;
         
@@ -25,15 +25,13 @@ namespace Platform.Controllers
         {
             _levelAction = levelAction;
         }
-    
-
+        
         private void Start()
         {
             ActivateBoost();
             ActivateKey();
         }
-    
-    
+        
         [VInspector.Button]
         private void ActivateKey()
         {
@@ -42,7 +40,6 @@ namespace Platform.Controllers
             
             if (settings.LevelData == null) return;
 
-            // 1. Убеждаемся, что в списке достаточно элементов, чтобы не было ошибки индекса
             while (settings.LevelData.Count <= level)
             {
                 settings.LevelData.Add(new LevelData { TakeKey = false });
@@ -59,28 +56,38 @@ namespace Platform.Controllers
             if (settings.LevelData[level - 1 ].TakeKey == false)
             {
                 _keyParent = new GameObject("Key");
-                _keyParent.transform.SetParent(this.transform);
+                _keyParent.transform.SetParent(_boostParent.transform);
                 
                 for (int i = 0; i < _keyCount; i++)
                 {
+#if UNITY_EDITOR
                     GameObject key = PrefabUtility.InstantiatePrefab(_keyPrefab, _keyParent.transform) as GameObject;
+#else
+                    GameObject key = Instantiate(_keyPrefab, _keyParent.transform);
+#endif
+                    
                     key.SetActive(true);
                     key.transform.position = (i + 1) * Vector3.down * _platformDistance * _platformContinue;
                 }
             }
-            
         }
-
-
+        
         private void ActivateBoost()
         {
             GameObject BoostParent = new GameObject("Boost");
-            BoostParent.transform.SetParent(this.transform);
+            BoostParent.transform.SetParent(_boostParent.transform);
             for (int i = 0; i < 2; i++)
             {
+#if UNITY_EDITOR
                 GameObject boost = PrefabUtility.InstantiatePrefab(_boostPrefab, BoostParent.transform) as GameObject;
+#else
+                GameObject boost = Instantiate(_boostPrefab, BoostParent.transform) as GameObject;
+#endif
                 boost.SetActive(true);
-                boost.transform.position = (i + 1) * Vector3.down * _platformDistance * _platformContinueBoost;
+
+                Vector3 pos = (i + 1) * Vector3.down * _platformDistance * _platformContinueBoost;
+                pos -= Vector3.up * 0.1f;
+                boost.transform.position = pos;
                 boost.transform.localEulerAngles = new Vector3(0, Random.Range(0, 360),0);
             }
         }
@@ -89,8 +96,7 @@ namespace Platform.Controllers
         {
             _keyParent.SetActive(false);
         }
-
-
+        
         private void OnEnable()
         {
             _levelAction.OnTakeKey += DeactivateKey;

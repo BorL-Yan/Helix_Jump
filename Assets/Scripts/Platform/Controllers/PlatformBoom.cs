@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using com.cyborgAssets.inspectorButtonPro;
 using DG.Tweening;
 using UnityEngine;
@@ -7,15 +8,26 @@ using Random = UnityEngine.Random;
 public class PlatformBoom : MonoBehaviour
 {
     [SerializeField] private Collider _collider;
-    [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private MeshRenderer[] _meshRenderer;
     
     Sequence sequence;
-    
+
+    private void Awake()
+    {
+        _meshRenderer = GetComponentsInChildren<MeshRenderer>();
+    }
+
     public void SetMaterial(Material material)
     {
-        if (_meshRenderer != null && material != null)
+        // if (_meshRenderer != null && material != null)
+        // {
+        //     _meshRenderer.material = material;
+        // }
+        if(material == null) return;
+        
+        foreach (var chield in _meshRenderer)
         {
-            _meshRenderer.material = material;
+            chield.material = material;
         }
     }
     

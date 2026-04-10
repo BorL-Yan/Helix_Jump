@@ -21,4 +21,6 @@ public class GameAction
 
     public Action<bool> ActivateSkinPanel;
     public Action<bool> ActivateGlobalPanel;
+
+    public Action OpenBox;
 }

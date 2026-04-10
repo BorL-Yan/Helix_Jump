@@ -11,7 +11,9 @@ namespace Ball.Controller
     {
         [SerializeField] private List<BallMaterial> _materials;
         private Material _defaultMaterial;
+        private Material _defaultTrailMaterial;
         [SerializeField] private Material _comboMaterial;
+        [SerializeField] private Material _comboTrailMaterial;
         [SerializeField] private TrailRenderer _trailRenderer;
 
         private BallAction _ballAction;
@@ -39,9 +41,10 @@ namespace Ball.Controller
             _materials = new List<BallMaterial>(children);
         }
 
-        public void SetMaterial(Material newMaterial)
+        public void SetMaterial(Material newMaterial, Material trailMaterial)
         {
             _defaultMaterial = newMaterial;
+            _defaultTrailMaterial = trailMaterial;
             if (newMaterial == null)
             {
                 Debug.LogWarning("[BallMaterialController] Cannot set null material");
@@ -62,7 +65,7 @@ namespace Ball.Controller
                 {
                     material.SetMaterial(_comboMaterial);
                 }
-                _trailRenderer.material = _comboMaterial;
+                _trailRenderer.material = _comboTrailMaterial;
             }
             else
             {
@@ -70,7 +73,7 @@ namespace Ball.Controller
                 {
                     material.SetMaterial(_defaultMaterial);
                 }
-                _trailRenderer.material = _defaultMaterial;
+                _trailRenderer.material = _defaultTrailMaterial;
             }
         }
         

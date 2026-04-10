@@ -30,7 +30,7 @@ namespace Ball.Controller
         {
             BallColor ballColor = _config.GetMaterial();
             
-            _materialController?.SetMaterial(ballColor.BallMaterial);
+            _materialController?.SetMaterial(ballColor.BallMaterial, ballColor.ParticleMaterial);
 
             if (_trailRenderer != null)
             {
@@ -38,7 +38,8 @@ namespace Ball.Controller
             }
             if (_spriteRenderer != null) _spriteRenderer.color = ballColor.Color;
 
-            if (_particleRenderer != null) _particleRenderer.material = ballColor.ParticleMaterial;
+            if (_particleRenderer != null) 
+                _particleRenderer.material = ballColor.ParticleMaterial;
             if (_jumpParticle != null)
             {
                 var main = _jumpParticle.main;

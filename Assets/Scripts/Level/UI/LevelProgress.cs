@@ -24,14 +24,12 @@ public class LevelProgress : MonoBehaviour
     private int currentPlatformsCount;
 
     private LevelAction _levelAction;
-    private GameAction _gameAction;
     private Sequence progressSequence;
 
     [Inject]
-    public void Construct(LevelAction levelAction, GameAction gameAction)
+    public void Construct(LevelAction levelAction)
     {
         _levelAction = levelAction;
-        _gameAction = gameAction;
     }
     
     private void Start()

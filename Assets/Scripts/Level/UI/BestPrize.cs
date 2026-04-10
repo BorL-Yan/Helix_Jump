@@ -1,52 +1,154 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using DG.Tweening;
+using Level;
+using TMPro;
+using UI_Scripts.Bonus_UI;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace Level
+
+public class BestPrize : MonoBehaviour
 {
-    public class BestPrize : MonoBehaviour
+    [SerializeField] private GameObject _panel;
+    [SerializeField] private UIButton _closeButton;
+    [SerializeField] private GameObject _adsButton;
+    [SerializeField] private GameObject[] _keys;
+
+    [SerializeField] private TMP_Text _pointText;
+    
+    private int currentKeys;
+    [SerializeField] private CoinUIAnimation _coinUIAnimation;
+    [SerializeField] private List<ChestButton> _chestButtons;
+    
+    private readonly int[] prizeMoney = new[] { 50, 75, 150 };
+    
+    private Action _callback;
+    private Coroutine _chestCoroutine;
+
+    private void Awake()
     {
-        [SerializeField] private GameObject _panel;
+        var childs = GetComponentsInChildren<ChestButton>(true);
+        _chestButtons = new List<ChestButton>(childs);
+    }
 
-        [SerializeField] private UIButton _closeButton;
-        
-        // TODO Box List;
-        
-        private Action _callback;
-        
-        private void Start()
+    private void Start()
+    {
+        _panel.SetActive(false);
+    }
+    
+    [VInspector.Button]
+    public void Activate(Action callback)
+    {
+        _callback = callback;
+        _panel.SetActive(true);
+        _chestButtons.ForEach(item =>
         {
-            _panel.SetActive(false);
-            _closeButton.gameObject.SetActive(false);
+            item.SetBestPrizeComponent(this);
+            item.SpawnChest();
+        });
+        _chestCoroutine = StartCoroutine(RotateChest());
+        _pointText.text = NumberFormatter.FormatValue(GameSave.GetSettings().Coin);
+        
+        currentKeys = 3;
+        ActivateCloseButton(false);
+        SoundManager.Instance.Play(SoundType.Open_Chests_Panel);
+    }
+
+    public void ActivateCloseButton(bool value)
+    {
+        _adsButton.SetActive(value);
+        _closeButton.gameObject.SetActive(value);
+    }
+
+    public void OpenChest(Action<BestPrizeType> callback, ChestButton chest)
+    {
+        currentKeys--;
+        if (currentKeys < 0)
+        {
+            callback?.Invoke(BestPrizeType.Null);
+            Debug.Log("Return");
+            return;
+            
+        }
+        if (currentKeys == 0)
+        {
+            ActivateCloseButton(true);
         }
 
-        public void Activate(Action callback)
-        {
-            _callback = callback;
-            _panel.SetActive(true);
-            //TODO change this activate to opening all boxes cont.  
-            ActivateCloseButton();
-        }
-
-        public void ActivateCloseButton()
-        {
-            _closeButton.gameObject.SetActive(true);
-        }
+        int money = 0;
+        GameObject keyObj = _keys[currentKeys];
+        Sequence sequence = DOTween.Sequence();
         
+        sequence.Append(keyObj.transform.DOScale(0, 0.5f))
+            .AppendCallback(() =>
+            {
+                chest.OpenChest();
+            })
+            .AppendInterval(0.2f)
+            .AppendCallback(() =>
+            {
+                _coinUIAnimation.ActivateAnimation(null);
+                int randType = Random.Range(0, 3);
+                BestPrizeType prizeType = (BestPrizeType)randType;
 
-        private void Deactivate()
-        {
-            _callback?.Invoke();
-            _panel.SetActive(false);
-        }
-        
-        private void OnEnable()
-        {
-            _closeButton.OnClick += Deactivate;
-        }
+                money = prizeMoney[randType];
+                callback?.Invoke(prizeType);
+            }).AppendInterval(0.5f)
+            .AppendCallback(() =>
+            {
+                var save = GameSave.GetSettings();
 
-        private void OnDisable()
+                _pointText.text = NumberFormatter.FormatValue(save.Coin);
+
+                int currentPoint = save.Coin;
+
+                int point = currentPoint + money;
+                DOTween.To(() => currentPoint, x => currentPoint = x, point, 0.8f)
+                    .OnUpdate(() =>
+                    {
+                        _pointText.text = NumberFormatter.FormatValue(currentPoint);
+                    })
+                    .SetEase(Ease.Linear);
+                save.Coin += money;
+                GameSave.SetSettings(save);  
+            });
+
+    }
+    
+    private IEnumerator RotateChest()
+    {
+        var timeYield = new WaitForSeconds(2f);
+        var minYield = new WaitForSeconds(0.1f);
+        while (true)
         {
-            _closeButton.OnClick -= Deactivate;
+            yield return timeYield;
+            foreach (var chest in _chestButtons)
+            {
+                chest.RotateChest();
+                yield return minYield;
+            }
         }
     }
+
+    private void Deactivate()
+    {
+        _callback?.Invoke();
+        _panel.SetActive(false);
+        StopCoroutine(_chestCoroutine);
+    }
+    
+    private void OnEnable()
+    {
+        _closeButton.OnClick += Deactivate;
+    }
+
+    private void OnDisable()
+    {
+        _closeButton.OnClick -= Deactivate;
+    }
+    
 }
+
+public enum BestPrizeType : byte { Low = 0, Middle, Height, Null }

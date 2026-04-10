@@ -13,6 +13,11 @@ namespace Level.Controller
         [SerializeField] private RectTransform _active;
         [SerializeField] private RectTransform _end;
 
+        private void Awake()
+        {
+            SetActive(false);
+        }
+
         private void SetActive(bool active)
         {
             _loadingPanel.SetActive(active);
@@ -41,7 +46,7 @@ namespace Level.Controller
         private void Activate(Action callback)
         {
             SetActive(true);
-
+            SoundManager.Instance.Play(SoundType.Cloud_Whoosh);
             _loadingPanel.transform.localPosition = _start.localPosition;
 
             Sequence activateSequence = DOTween.Sequence();

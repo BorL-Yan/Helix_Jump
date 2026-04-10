@@ -3,12 +3,82 @@ guid: ea3b0be658261fb48bb901b610e69f28
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BRIDGE
+    second: {fileID: 2100000, guid: 6918331ce4be1c145a1a43fb2178bcb2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BRIDGE_PIERS
+    second: {fileID: 2100000, guid: 5fade70b91cdb694482ebc30a1caa599, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BUSH
+    second: {fileID: 2100000, guid: d4efc6feb5900e14cad59dfe7d95eb53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FIR_TREE_LOWER_PART
+    second: {fileID: 2100000, guid: 409fbb032dab2c944b9d19fbac8d1ed0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FIR_TREE_UPPER_PART
+    second: {fileID: 2100000, guid: 9cbbff8ba26206441ae665109c3ad38a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FRONT_DETAILS_OFTHE_HOUSE
+    second: {fileID: 2100000, guid: d63a1a54f81457c419a394f24ad5f733, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: IN_FRONT_OF_THE_HOUSE
+    second: {fileID: 2100000, guid: 72094c92494cfb548af37ab1d63d3d7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MIDDLE_PART_OFTHE_HOUSE
+    second: {fileID: 2100000, guid: 814ba342d9bdf0e439d86307a98d268d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ROCK
+    second: {fileID: 2100000, guid: 2ee1537718837fd4c91cb77962ce36ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ROOF_MESH
+    second: {fileID: 2100000, guid: 0a185380559f06347bf66348a4624cc3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: STONE
+    second: {fileID: 2100000, guid: e9549650b7b347a4f9a8744a99efa66f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: THE_HIGHEST_POINT_OFTHE_HOUSE
+    second: {fileID: 2100000, guid: 082df187dd13e6a4f8955fd3bddd6be3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TRUNK
+    second: {fileID: 2100000, guid: 402b4babada62a74e8ac42836dd2cdcc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grass
+    second: {fileID: 2100000, guid: 066f4f4b19f2e8d4eaa3fc220a768dd8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -33,7 +103,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -91,7 +161,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 100
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

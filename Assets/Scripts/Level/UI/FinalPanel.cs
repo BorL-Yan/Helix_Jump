@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using com.cyborgAssets.inspectorButtonPro;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.Serialization;
 
 namespace Level
 {
@@ -14,25 +11,20 @@ namespace Level
         [SerializeField] private GameObject _panel;
         
         [SerializeField] private TMP_Text _levelText;
-        [SerializeField] private TMP_Text _pointText;
+        [FormerlySerializedAs("_CoinText")] [FormerlySerializedAs("_pointText")] [SerializeField] private TMP_Text _coinText;
 
-        [SerializeField] private TMP_Text _currentPointText;
-
-        [SerializeField] private GameObject _coinObj;
-        private int instantiateCount = 30;
-        [SerializeField] private RectTransform _spawnRadius;
-        [SerializeField] private RectTransform _startPosition;
-        [SerializeField] private RectTransform _endPosition;
-
-        private const int LEVELPOINT = 50;
+        [FormerlySerializedAs("_currentPointText")] [SerializeField] private TMP_Text _currentCoinText;
         
+        private const int LEVELPOINT = 50;
+
+        [SerializeField] private CoinUIAnimation _coinUIAnimation;
 
         private void Start()
         {
             _panel.SetActive(false);
         }
 
-        [ProButton]
+        [VInspector.Button]
         public void TestActivate()
         {
             Activate(null);
@@ -44,9 +36,9 @@ namespace Level
             _panel.SetActive(true);
             var save = GameSave.GetSettings();
 
-            _levelText.text = $"Level {1} passed";
-            _currentPointText.text = NumberFormatter.FormatValue(save.Coin);
-            _pointText.text = save.Coin.ToString();
+            _levelText.text = $"Level {GameManager.Instance.CurrentActiveLevel} passed";
+            _currentCoinText.text = NumberFormatter.FormatValue(save.Coin);
+            _coinText.text = save.Coin.ToString();
 
             int currentPoint = save.Coin;
 
@@ -54,64 +46,22 @@ namespace Level
             DOTween.To(() => currentPoint, x => currentPoint = x, point, 0.5f)
                 .OnUpdate(() =>
                 {
-                    _pointText.text = currentPoint.ToString();
+                    _coinText.text = currentPoint.ToString();
                 })
                 .SetEase(Ease.Linear);
             
             Sequence coinSequence = DOTween.Sequence();
-            coinSequence.AppendInterval(0.1f);
-
-            List<GameObject> coins = new();
-            
-            for (int i = 0; i < instantiateCount; i++)
-            {
-                var coin = Instantiate(_coinObj, transform);
-
-                float scale = Random.Range(1f, 1.5f);
-                coin.transform.localScale = Vector3.zero;
-                
-                coin.transform.localPosition = _startPosition.localPosition 
-                                               + new Vector3(Random.Range(-_spawnRadius.localPosition.x, _spawnRadius.localPosition.x),
-                                                   Random.Range(-_spawnRadius.localPosition.y, _spawnRadius.localPosition.y));
-
-                float duration = Random.Range(0.2f, 0.4f);
-                coinSequence.Join(coin.transform.DOScale(scale, duration));
-                    
-                coins.Add(coin);
-            }
-            
-            coinSequence.AppendInterval(0.6f);
-            
-            
-            foreach (var coin in coins)
-            {
-                float duration = Random.Range(0.3f, 0.6f);
-                coinSequence
-                    .Join(coin.transform.DOLocalMove(_endPosition.localPosition, duration)
-                        .OnComplete(()=>
-                        {
-                            coin.transform.localScale = Vector3.zero;
-                        }))
-                    .Join(coin.transform.DOScale(0.8f, 0.2f).SetEase(Ease.OutBack));
-                    
-            }
-
-            //coinSequence.AppendInterval(0.001f);
-            
-            // foreach (var coin in coins)
-            // {
-            //     coinSequence
-            //         .Join(coin.transform.DOScale(0.3f, 0.2f));
-            // }
-            
-            coinSequence
-                .OnComplete(() =>
+            coinSequence.AppendInterval(0.1f)
+                .AppendCallback(() =>
                 {
-                    _currentPointText.text = NumberFormatter.FormatValue(currentPoint);
-                    callback?.Invoke();
+                    _coinUIAnimation.ActivateAnimation(() =>
+                    {
+                        _currentCoinText.text = NumberFormatter.FormatValue(currentPoint);
+                        callback?.Invoke();
+                    });
                 });
             
-            save.Coin =  point;
+            save.Coin = point;
             GameSave.SetSettings(save);
             GameSave.Save();
         }

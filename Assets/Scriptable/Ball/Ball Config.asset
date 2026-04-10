@@ -21,6 +21,8 @@ MonoBehaviour:
   <HangThreshold>k__BackingField: 0.1
   <HangGravityMultiplier>k__BackingField: 0.5
   _materials:
-  - {fileID: 11400000, guid: c6d318a2242579f42bcac9a9a87fdbe1, type: 2}
+  - {fileID: 11400000, guid: 2566b2e1208570d459d3a4195dded53a, type: 2}
   - {fileID: 11400000, guid: 5aa1fbb4d4ad7124185bde789f9f99eb, type: 2}
-  - {fileID: 11400000, guid: bc369b656460ace4eb3ad55b390e4836, type: 2}
+  - {fileID: 11400000, guid: f0f9d5b438c45e4489faeafcefe3e565, type: 2}
+  - {fileID: 11400000, guid: c67743bf7a57ae544b5bcb4c7c6f4de1, type: 2}
+  - {fileID: 11400000, guid: 9e21fdc1c1cda4747a530cb47e17a0f0, type: 2}

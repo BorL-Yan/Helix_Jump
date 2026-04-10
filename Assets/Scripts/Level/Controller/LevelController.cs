@@ -43,7 +43,6 @@ namespace Level.Controller
         {
             if (GameSave.GetSettings().Key >= 3)
             {
-                //TODO Activate Leader Board
                 _bestPrize.Activate(ActivateLeaderBoard);
                 GameSave.GetSettings().Key = 0;
                 GameSave.Save();

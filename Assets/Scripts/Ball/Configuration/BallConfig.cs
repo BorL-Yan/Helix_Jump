@@ -20,7 +20,7 @@ public class BallConfig : ScriptableObject
     [SerializeField] private List<BallColor> _materials;
     public BallColor GetMaterial()
     {
-        int level = GameSave.GetSettings().ActiveLevelSkin;
+        int level = GameManager.Instance.CurrentActiveLevel;
         
         return GetMaterial(level % _materials.Count);
     }
@@ -32,5 +32,6 @@ public class BallConfig : ScriptableObject
             return _materials != null && _materials.Count > 0 ? _materials[0] : null;
         }
         return _materials[index];
+        
     }
 }

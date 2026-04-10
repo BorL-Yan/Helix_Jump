@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -19,33 +20,56 @@ namespace Platform.Main_Scene
         [SerializeField] private float _fadeOutDuration;
         private float _scale;
         private float _alpha;
+
+        [SerializeField] private Animator _animator;
+
+
+        [SerializeField] private GameObject _particle;
         
-        
-        [field:SerializeField] public int platformID { get; private set; }
+        [field:SerializeField] public int platformID { get; set; }
         
         private void Awake()
         {
             _text.text = platformID.ToString();
+            _particle.SetActive(false);
             Deactivate();
             
             _scale = _selectCircle.transform.localScale.x;
             _alpha = _selectCircle.color.a;
             _selectCircle.transform.localScale = Vector3.zero;
-            
-            
+        }
+
+        public void ActivateAnimation()
+        {
+            _animator.Play("Open");
+            _particle.SetActive(true);
+        }
+
+        public void OpenedAnimation()
+        {
+            _animator.Play("Opened");
+            //_animator.Play("Open");
+        }
+        
+        public void ClosedAnimation()
+        {
+            _animator.Play("Close");
         }
         
         public void Activate()
         {
-            _meshRenderer.material = _activeMaterial;    
+            OpenedAnimation();
+            _meshRenderer.material = _activeMaterial;
             _selectorPlatform.enabled = true;
         }
 
         public void Deactivate()
         {
+            ClosedAnimation();
             _meshRenderer.material = _deactiveMaterial;
             _selectorPlatform.enabled = false;
         }
+        
 
         public void Select()
         {

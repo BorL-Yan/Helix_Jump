@@ -24,6 +24,7 @@ public class InputController: IStartable, IDisposable
         
         _input.Screan.Touch.performed += e => Touch_0(e.ReadValue<TouchState>());
         _input.Screan.Mouse.started += e => ButtonDown(e);
+        _input.Screan.Move.started += e => Move(e.ReadValue<Vector2>());
         
     }
 
@@ -34,7 +35,15 @@ public class InputController: IStartable, IDisposable
             _gameAction.MoveX?.Invoke(touch.delta.x);
             _gameAction.MoveY?.Invoke(touch.delta.y);
         }
-        
+    }
+
+    private void Move(Vector2 value)
+    {
+        if (Mouse.current.leftButton.isPressed)
+        {
+            _gameAction.MoveX?.Invoke(value.x);
+            _gameAction.MoveY?.Invoke(value.y);
+        }
     }
 
     private void ButtonDown(InputAction.CallbackContext c)

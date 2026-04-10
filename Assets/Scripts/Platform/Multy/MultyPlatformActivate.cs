@@ -21,7 +21,6 @@ namespace Platform.Multy
         public void ActivateText()
         {
             if (_text == null) return;
-            Debug.Log("Activate");
             Color currentColor = _text.color;
             Color doColor = Color.white;
             
@@ -31,7 +30,6 @@ namespace Platform.Multy
             sequence.Append(_text.DOColor(doColor, 0.2f))
                 .Append(_text.DOColor(currentColor, 0.2f))
                 .SetLoops(3, LoopType.Restart);
-
         }
 
 

@@ -11,14 +11,10 @@ public class GameManager : SingletonGame<GameManager>
     [SerializeField] private GameObject _menuCanvas;
     [SerializeField] private LevelLoadingUI _loadingUI;
     private GameObject _ball;
-
-    public bool Inited { get; private set; }
     
     public GameAction Action { get; private set; }
-
     public GameState GameState { get; set; }
-
-
+    
     public int CurrentActiveLevel { get; set; } = 1;
     public bool OpenNewLevel { get; set; }
     public bool IsMenuActive { get; set; }
@@ -33,23 +29,23 @@ public class GameManager : SingletonGame<GameManager>
 
     public void Initializ()
     {
-        if(Inited) return;
-        Inited = true;
-        
         GameObject prefab = Resources.Load<GameObject>("Ball/Ball_Menu");
-    
+        
         if(prefab != null)
         {
-            // 1. Instantiate without a parent first
             _ball = Instantiate(prefab);
-        
-            // 2. Try to set the parent manually
             if (transform != null)
             {
                 _ball.transform.SetParent(transform, false);
             }
-
             GameState = GameState.main;
+        }
+        GameObject soundMangerPrefab = Resources.Load<GameObject>("Managers/SoundManager");
+        if (soundMangerPrefab != null)
+        {
+            SoundManager soundManager = Instantiate(soundMangerPrefab).GetComponent<SoundManager>();
+            soundManager.Initialize();
+            soundManager.transform.SetParent(this.transform);
         }
     }
 

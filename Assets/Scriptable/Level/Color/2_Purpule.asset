@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acff9007d24847578f14e78bd538159b, type: 3}
+  m_Name: 2_Purpule
+  m_EditorClassIdentifier: Assembly-CSharp::Platform.Configuration.LevelColor
+  <BackGround>k__BackingField: {fileID: -238559486, guid: 89173ba3668aebc44bb55c1366798305, type: 3}
+  <Platform>k__BackingField: {fileID: 2100000, guid: 04cc4af999e3087489be252fc35880e7, type: 2}
+  <Cilinder>k__BackingField: {fileID: 2100000, guid: 84b6303e548352a478af41d986c83fdd, type: 2}

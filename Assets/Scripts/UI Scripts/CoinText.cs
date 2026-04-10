@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace UI_Scripts
     public class CoinText : MonoBehaviour
     {
         [SerializeField] private TMP_Text _coin;
-
+        
         private void UpdateUI()
         {
             _coin.text = GameSave.GetSettings().Coin.ToString();
@@ -15,6 +16,7 @@ namespace UI_Scripts
         private void OnEnable()
         {
             GameSave.OnChangeSettings += UpdateUI;
+            UpdateUI();
         }
 
         private void OnDisable()

@@ -55,7 +55,7 @@ public class GameSettings : ISerializationCallbackReceiver
 
     public int LeaderID = 3000;
     public int RankedID = 0;
-    public int Coin = 0;
+    public int Coin = 100;
     public int Score = 0;
     public int Key = 0;
 

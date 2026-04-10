@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5989129667509555375}
   - component: {fileID: 4353797793488559821}
   - component: {fileID: 5403807623365691870}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Prefabs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ Transform:
   - {fileID: 1762734067668113484}
   - {fileID: 4490042220069927289}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -53.593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4082833084767621995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   _rotateDuration: 5
   _scaleDuration: 0.3
   _scaleRange: 0.193
-  _rotationRange: {x: 150, y: 245}
+  _rotationRange: {x: 150, y: 325}
   _ball: {fileID: 3136462328628543277}
 --- !u!114 &5989129667509555375
 MonoBehaviour:
@@ -77,6 +77,8 @@ MonoBehaviour:
   - {fileID: 3360863827249160591}
   - {fileID: 7702906641440024305}
   - {fileID: 9053656533375440337}
+  _comboMaterial: {fileID: 2100000, guid: 4cff8963a06ac9043b63ede104470276, type: 2}
+  _trailRenderer: {fileID: 0}
 --- !u!114 &4353797793488559821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,13 +189,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6add1c23085375643b7aa2076b47e08e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4cff8963a06ac9043b63ede104470276, type: 2}
     - target: {fileID: 919132149155446097, guid: 6add1c23085375643b7aa2076b47e08e, type: 3}
       propertyPath: m_Name
       value: Sphere_lowsphere
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6add1c23085375643b7aa2076b47e08e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6add1c23085375643b7aa2076b47e08e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -296,6 +306,10 @@ PrefabInstance:
       value: Icosphere
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9e914c2d57cc3854b977a2dfb971c73b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9e914c2d57cc3854b977a2dfb971c73b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -395,9 +409,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b26f1e244ff5c424093df0bdb283a078, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4cff8963a06ac9043b63ede104470276, type: 2}
     - target: {fileID: 919132149155446097, guid: b26f1e244ff5c424093df0bdb283a078, type: 3}
       propertyPath: m_Name
       value: star
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b26f1e244ff5c424093df0bdb283a078, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b26f1e244ff5c424093df0bdb283a078, type: 3}
       propertyPath: m_IsActive
@@ -499,13 +521,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f563c0b1e5bf4b442860613e1a717e24, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4cff8963a06ac9043b63ede104470276, type: 2}
     - target: {fileID: 919132149155446097, guid: f563c0b1e5bf4b442860613e1a717e24, type: 3}
       propertyPath: m_Name
       value: Sphere (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f563c0b1e5bf4b442860613e1a717e24, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f563c0b1e5bf4b442860613e1a717e24, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -606,6 +636,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a59e847b849c8ae499967596a12909d8, type: 3}
       propertyPath: m_Name
       value: Circle
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a59e847b849c8ae499967596a12909d8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a59e847b849c8ae499967596a12909d8, type: 3}
       propertyPath: m_IsActive
@@ -710,6 +744,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c30139b95f070774c9a26c619d75b1fa, type: 3}
       propertyPath: m_Name
       value: Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c30139b95f070774c9a26c619d75b1fa, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c30139b95f070774c9a26c619d75b1fa, type: 3}
       propertyPath: m_IsActive

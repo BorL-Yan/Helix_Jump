@@ -1,4 +1,5 @@
 using System;
+using System.Buffers;
 using com.cyborgAssets.inspectorButtonPro;
 using DG.Tweening;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace Platform.Main_Scene
         
         private void OnEnable()
         {
-            GameManager.Instance.Action.SelectPlatform += GameLifeTime;
+            GameManager.Instance.Action.SelectPlatform += SelectPlatformNewLevel;
             GameManager.Instance.Action.ActivateGameSelectPlatform += ActivateGame;
         }
 
@@ -33,6 +34,7 @@ namespace Platform.Main_Scene
             if (_mainPlatform.platformID == id)
             {
                 _mainPlatform.Select();
+                _mainPlatform.OpenedAnimation();
                 callback?.Invoke(this);
             }else if (id > _mainPlatform.platformID)
             {
@@ -44,15 +46,20 @@ namespace Platform.Main_Scene
             }
         }
         
-        private void GameLifeTime(int id)
+        private void SelectPlatformNewLevel(int id)
         {
             if (GameManager.Instance.OpenNewLevel && _mainPlatform.platformID == id)
             {
                 Sequence sequence = DOTween.Sequence();
-                sequence.AppendInterval(2f) // Animation interval
+                sequence.AppendInterval(0.2f)
                     .AppendCallback(() =>
                     {
+                        _mainPlatform.ActivateAnimation();
                         _mainPlatform.Select();
+                    });
+                sequence.AppendInterval(0.5f)
+                    .AppendCallback(() =>
+                    {
                         GameManager.Instance.Action.SelectingPlatform?.Invoke(this);
                         GameManager.Instance.OpenNewLevel = false;
                     });
@@ -110,7 +117,7 @@ namespace Platform.Main_Scene
         {
             if (GameManager.Instance != null)
             {
-                GameManager.Instance.Action.SelectPlatform -= GameLifeTime;
+                GameManager.Instance.Action.SelectPlatform -= SelectPlatformNewLevel;
                 GameManager.Instance.Action.ActivateGameSelectPlatform -= ActivateGame;
             }
         }

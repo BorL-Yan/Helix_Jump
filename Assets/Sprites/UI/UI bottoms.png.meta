@@ -238,8 +238,8 @@ TextureImporter:
         serializedVersion: 2
         x: 965
         y: 2411
-        width: 107
-        height: 107
+        width: 105
+        height: 105
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -280,10 +280,10 @@ TextureImporter:
       name: UI botttoms_8
       rect:
         serializedVersion: 2
-        x: 882
+        x: 886
         y: 2191
-        width: 87
-        height: 91
+        width: 83
+        height: 89
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -436,7 +436,7 @@ TextureImporter:
         serializedVersion: 2
         x: 1024
         y: 2173
-        width: 63
+        width: 61
         height: 72
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

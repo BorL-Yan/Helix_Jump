@@ -11,6 +11,7 @@ namespace Ball.Controller
     {
         [SerializeField] private float _distance;
         [SerializeField] private Transform _ball;
+        [SerializeField] private BallBreakPlatformSound _breakPlatformSound;
         private float _speed;
 
         private Collider _collider;
@@ -44,7 +45,7 @@ namespace Ball.Controller
             _collider.enabled = true;
             transform.position = _ball.position;
             Sequence move = DOTween.Sequence();
-
+            
             move.Append(transform.DOMoveY(transform.position.y - _distance, _speed).SetEase(Ease.Linear)
                     .OnUpdate(() =>
                     {
@@ -85,6 +86,7 @@ namespace Ball.Controller
                 ComboTrail.Instance.Activate();
             }
             _levelAction.OnSetPoint?.Invoke(_flags.currentPlatformBreak);
+            _breakPlatformSound.PlayBreakPlatform(_flags.currentPlatformBreak);
         }
 
         private void OnEnable()

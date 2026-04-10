@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Waher
+  m_Shader: {fileID: -6465566751694194690, guid: 2633754933f18b349854f76cf3bb7f6c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: d188a9c01e5c1fb4784c4f4e53e92371, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _FadeDistance: 0
+    - _FoamAmount: 0.2
+    - _FoamCutOff: 0.999
+    - _FoamSpeed: 4.39
+    - _Foam_Scale: 3000
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _RefracrionScale: 1
+    - _RefracrionStrenght: 0.01
+    - _RefractionSpeed: 0.01
+    - _RippleDensity: 0
+    - _RippleSpeed: 0
+    - _RippleThickness: 0
+    - _RipplesFrequency: 5
+    - _RipplesSpeed: 3
+    - _RipplesThickness: 0
+    - _Rotate: 3.78
+    - _Scale: 45
+    - _Voronoi_Scale: 525.2
+    - _Voronoi_Smooth: 6.1
+    - _WaterHeight: 0.05
+    - _WatherFade: 3.85
+    - _XRMotionVectorsPass: 1
+    m_Colors:
+    - _Depth_Water: {r: 0.07843137, g: 0.7421557, b: 1, a: 1}
+    - _Direction: {r: 0, g: -0.1, b: 0, a: 0}
+    - _Foam_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Foam_Speed: {r: 0, g: -0.84, b: 0, a: 0}
+    - _RippleColor: {r: 0, g: 0, b: 0, a: 1}
+    - _Ripple_Color: {r: 0.19379672, g: 0.4323968, b: 0.6132076, a: 1}
+    - _Shallow_Water: {r: 0.4764151, g: 0.8077619, b: 1, a: 0.9137255}
+    - _WaterColor: {r: 0.07075471, g: 0.82573193, b: 1, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!114 &1885966109203331928
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
+  version: 10

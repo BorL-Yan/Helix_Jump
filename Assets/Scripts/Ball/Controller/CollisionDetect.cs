@@ -10,9 +10,9 @@ namespace Ball.Controller
     {
         [SerializeField] private LayerMask _detectlayerMask;
         [SerializeField] private Vector3 _detectionSize;
+        [SerializeField] private BallBreakPlatformSound _breakPlatformSound;
 
         [SerializeField] private float _breakPlatformDistance;
-        
         private BallAction _ballAction;
         private BallFlags _flags;
         private BallConfig _ballConfig;
@@ -32,8 +32,9 @@ namespace Ball.Controller
         private void Start()
         {
             _activated = true;
-            _ballMaterial = _ballConfig.GetMaterial().BallMaterial;
-            ComboTrail.Instance.SetMaterial(_ballMaterial);
+            var ballConfigMaterials = _ballConfig.GetMaterial();
+            _ballMaterial = ballConfigMaterials.BallMaterial;
+            ComboTrail.Instance.SetMaterial(ballConfigMaterials.ParticleMaterial);
         }
 
         
@@ -59,16 +60,19 @@ namespace Ball.Controller
                 case "EnemyPlatform":
                 {
                     LoosePlatform();
+                    SoundManager.Instance.Play(SoundType.Platform_Break);
                     break;
                 }
                 case "FinishPlatform":
                 {
                     FinishPlatform(collider.transform);
+                    SoundManager.Instance.Play(SoundType.Win1);
                     break;
                 }
                 case "MultiplyPlatform":
                 {
                     MultyplyPlatform(collider.transform);
+                    SoundManager.Instance.Play(SoundType.Win2);
                     break;
                 }
                 case "MultiplyEmptyPlatform":
@@ -79,19 +83,22 @@ namespace Ball.Controller
                 case "MultiplyFinishPlatform":
                 {
                     //TODO final effect
-                    
+                    SoundManager.Instance.Play(SoundType.Win2);
                     MultyplyPlatform(collider.transform);
                     break;
                 }
                 case "Key":
                 {
                     TakeKey();
+                    SoundManager.Instance.Play(SoundType.Key_Take);
                     break;
                 }
                 case "BreakPlatformObject":
                 {
                     collider.gameObject.SetActive(false);
                     _ballAction.ActivateBreakPlatform(collider.transform.position);
+                    _ballAction.ActivateCombo?.Invoke(true);
+                    SoundManager.Instance.Play(SoundType.Combo, 0.7f);
                     break;
                 }
                 
@@ -108,6 +115,7 @@ namespace Ball.Controller
                 for (int i = 0; i < size; i++)
                 {
                     var hit = results[i];
+                    
                     if (hit.transform.CompareTag("BreakPlatform"))
                     {
                         var platform = PlatformActivatorList.Instance.GetPlatformActivate(hit.transform.GetInstanceID());
@@ -130,9 +138,10 @@ namespace Ball.Controller
             if (_flags.activeEffect)
             {
                 _flags.activeEffect = false;
-                _ballAction.ActivateCombo?.Invoke(false);
+                _ballAction?.ActivateCombo(false);
             }
             _flags.currentPlatformBreak = 0;
+            //SoundManager.Instance.Play(SoundType.Jump);
         }
 
         private void BreakPlatform(Transform platformTransform)
@@ -144,7 +153,7 @@ namespace Ball.Controller
             if(_flags.currentPlatformBreak >= _ballConfig.MaxPlatformBreak - 1)
             {
                 ComboTrail.Instance.Activate();
-                if (!_flags.activeEffect)
+                if (!_flags.activeEffect && _flags.currentPlatformBreak == _ballConfig.MaxPlatformBreak)
                 {
                     _flags.activeEffect = true;
                     _ballAction.ActivateCombo?.Invoke(true);
@@ -164,6 +173,7 @@ namespace Ball.Controller
             }
             
             _levelAction.OnSetPoint?.Invoke(_flags.currentPlatformBreak);
+            _breakPlatformSound.PlayBreakPlatform(_flags.currentPlatformBreak);
         }
 
         private void LoosePlatform()
@@ -198,8 +208,6 @@ namespace Ball.Controller
         private void TakeKey()
         {
             _levelAction.OnTakeKey();
-            Debug.Log("Take Key");
-            
         }
         
         private void FinishPlatform(Transform platformTransform)
@@ -208,7 +216,7 @@ namespace Ball.Controller
             BallGroundedEffect.Instance.GroundedEffect(platformTransform, false);
             ComboTrail.Instance.Deactivate();
             _ballAction.ActivateCombo?.Invoke(false);
-            _levelAction.OnFinishLevel?.Invoke();
+            _levelAction.OnFinishLevel.Invoke();
             _ballAction?.Jump();
             
             _levelAction.OnFinishEffectActivate?.Invoke(transform.position);
@@ -227,7 +235,6 @@ namespace Ball.Controller
             _ballAction.ActivateCombo?.Invoke(false);
             
             _levelAction.OnFinishEffectActivate?.Invoke(transform.position);
-            Debug.Log(platformTransform.name);
             platformTransform.GetComponent<MultyPlatformDetect>().Activate();
 
         }
@@ -241,6 +248,7 @@ namespace Ball.Controller
                 _flags.activeEffect = true;
                 _ballAction.ActivateCombo?.Invoke(true);
             }
+            _breakPlatformSound.PlayBreakPlatform(_flags.currentPlatformBreak);
         }
         
         private void DiactivateCollision()

@@ -134,6 +134,7 @@ public class MenuBallController : MonoBehaviour
         CalculateJumpParameters();
         _rb.linearVelocity = new Vector3(_rb.linearVelocity.x, initialJumpVelocity, _rb.linearVelocity.z);
         
+        if(_platform == null) return;
         _effect.Activate(_platform.transform.position);
         
         _platform.PlatformJumping();

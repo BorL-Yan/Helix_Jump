@@ -109,6 +109,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""601061c0-32e7-4138-beb8-adc516914a0a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -133,6 +142,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Mouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4cf71651-d6cd-4067-a915-34d6e861dd99"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +163,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Screan = asset.FindActionMap("Screan", throwIfNotFound: true);
         m_Screan_Touch = m_Screan.FindAction("Touch", throwIfNotFound: true);
         m_Screan_Mouse = m_Screan.FindAction("Mouse", throwIfNotFound: true);
+        m_Screan_Move = m_Screan.FindAction("Move", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -225,6 +246,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IScreanActions> m_ScreanActionsCallbackInterfaces = new List<IScreanActions>();
     private readonly InputAction m_Screan_Touch;
     private readonly InputAction m_Screan_Mouse;
+    private readonly InputAction m_Screan_Move;
     /// <summary>
     /// Provides access to input actions defined in input action map "Screan".
     /// </summary>
@@ -244,6 +266,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Screan/Mouse".
         /// </summary>
         public InputAction @Mouse => m_Wrapper.m_Screan_Mouse;
+        /// <summary>
+        /// Provides access to the underlying input action "Screan/Move".
+        /// </summary>
+        public InputAction @Move => m_Wrapper.m_Screan_Move;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -276,6 +302,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Mouse.started += instance.OnMouse;
             @Mouse.performed += instance.OnMouse;
             @Mouse.canceled += instance.OnMouse;
+            @Move.started += instance.OnMove;
+            @Move.performed += instance.OnMove;
+            @Move.canceled += instance.OnMove;
         }
 
         /// <summary>
@@ -293,6 +322,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Mouse.started -= instance.OnMouse;
             @Mouse.performed -= instance.OnMouse;
             @Mouse.canceled -= instance.OnMouse;
+            @Move.started -= instance.OnMove;
+            @Move.performed -= instance.OnMove;
+            @Move.canceled -= instance.OnMove;
         }
 
         /// <summary>
@@ -347,5 +379,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMouse(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMove(InputAction.CallbackContext context);
     }
 }

@@ -69,6 +69,7 @@ MonoBehaviour:
   LeaderBoard: {fileID: 0}
   BestPrize: {fileID: 0}
   FinalPanel: {fileID: 0}
+  _keyUI: {fileID: 0}
 --- !u!114 &8878201466383176099
 MonoBehaviour:
   m_ObjectHideFlags: 0

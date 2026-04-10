@@ -13,7 +13,6 @@ namespace Platform.Multy
         
         public void Activate()
         {
-            Debug.Log("Activate text Effect");
             ActivateList.ActivateDetect();
         }
     }

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acff9007d24847578f14e78bd538159b, type: 3}
+  m_Name: 5_Green
+  m_EditorClassIdentifier: Assembly-CSharp::Platform.Configuration.LevelColor
+  <BackGround>k__BackingField: {fileID: 1467179166, guid: 94dbbce974679e74c9e252e66a98ce0e, type: 3}
+  <Platform>k__BackingField: {fileID: 2100000, guid: 14de84b59bda5684ab7506ed1f5a3866, type: 2}
+  <Cilinder>k__BackingField: {fileID: 2100000, guid: 1bafe09a0f87b8d49bd529c6f525a3e1, type: 2}

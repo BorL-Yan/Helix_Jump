@@ -153,7 +153,7 @@ TextureImporter:
         width: 244
         height: 231
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -162,6 +162,28 @@ TextureImporter:
       bones: []
       spriteID: d40b36703f5fa21429ae27b1de42a4cf
       internalID: 1122847149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI bottons_2
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 905
+        width: 505
+        height: 209
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 98, y: 110, z: 90, w: 99}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5fa883b053f1e549b61a90745dc6b21
+      internalID: -1789444049
       vertices: []
       indices: 
       edges: []
@@ -182,6 +204,7 @@ TextureImporter:
     nameFileIdTable:
       UI bottons_0: -99980849
       UI bottons_1: 1122847149
+      UI bottons_2: -1789444049
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
